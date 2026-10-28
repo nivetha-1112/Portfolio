@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tiffany: #81D8D0;
+  --color-tiffany-dark: #57beb4;
+  --color-tiffany-light: #162a28;
+  --color-tiffany-soft: #1d3d3a;
+  --color-dark-bg: #0B0F17;
+  --color-dark-card: #111827;
+  --color-dark-card-hover: #162032;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: #0B0F17;
+    color: #F3F4F6;
+  }
+
+  body {
+    background-color: #0B0F17;
+    color: #F3F4F6;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #81D8D0;
+    color: #0B0F17;
+  }
+}
+
+/* Custom dark scrollbar with Tiffany accent */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0F17;
+}
+::-webkit-scrollbar-thumb {
+  background: #81D8D0;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #57beb4;
+}
+
+/* Glassmorphism & utilities for dark theme */
+.tiffany-gradient {
+  background: linear-gradient(135deg, #81D8D0 0%, #57beb4 100%);
+}
+
+.dark-glass-nav {
+  background: rgba(11, 15, 23, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.dark-glass-card {
+  background: rgba(17, 24, 39, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(129, 216, 208, 0.2);
+}
+
+.tiffany-glow {
+  box-shadow: 0 10px 30px -10px rgba(129, 216, 208, 0.35);
+}
+
+.tiffany-glow-sm {
+  box-shadow: 0 4px 15px -3px rgba(129, 216, 208, 0.25);
+}

@@ -1,0 +1,297 @@
+import React, { useEffect } from 'react'
+import {
+  X,
+  Printer,
+  Download,
+  FileText,
+  Mail,
+  MapPin
+} from 'lucide-react'
+import {
+  personalInfo,
+  experienceData,
+  projectsData,
+  educationData,
+  certificationsData
+} from '../data/portfolioData'
+
+export default function ResumeModal({ onClose, onShowToast }) {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = 'unset'
+    }
+  }, [onClose])
+
+  const handlePrint = () => {
+    window.print()
+  }
+
+  const handleDownloadText = () => {
+    const resumeText = `=====================================================
+${personalInfo.name.toUpperCase()}
+${personalInfo.title}
+=====================================================
+Location: ${personalInfo.location}
+Email: ${personalInfo.email}
+GitHub: ${personalInfo.github}
+LinkedIn: ${personalInfo.linkedin}
+
+PROFESSIONAL SUMMARY
+--------------------
+${personalInfo.shortBio}
+MERN Stack Developer & Full Stack Developer with 1 year of experience
+building responsive, API-driven web applications and admin panels.
+
+TECHNICAL SKILLS
+----------------
+- Frontend: React.js, JavaScript (ES6+), Tailwind CSS, HTML5 & CSS3
+- Backend: Node.js, Express.js, RESTful APIs
+- Databases: MongoDB, Mongoose
+- Tools: Git & GitHub, Postman, Vite
+
+PROFESSIONAL EXPERIENCE
+-----------------------
+${experienceData
+  .map(
+    (exp) => `* ${exp.role} (${exp.period})
+  Location: ${exp.location}
+  ${exp.achievements.map((a) => `  - ${a}`).join('\n')}`
+  )
+  .join('\n\n')}
+
+FEATURED PROJECTS
+-----------------
+${projectsData
+  .map(
+    (p) => `* ${p.title} (${p.category})
+  Tech Stack: ${p.techStack.join(', ')}
+  Description: ${p.shortDescription}
+  Key Features:
+  ${p.features.map((f) => `  - ${f}`).join('\n')}`
+  )
+  .join('\n\n')}
+
+EDUCATION
+---------
+${educationData
+  .map(
+    (edu) => `* ${edu.degree}
+  ${edu.institution} - ${edu.location}`
+  )
+  .join('\n\n')}
+
+CERTIFICATIONS
+--------------
+${certificationsData
+  .map((c) => `* ${c.name} - ${c.issuer}\n  Skills: ${c.skills}`)
+  .join('\n')}
+=====================================================
+`
+    const blob = new Blob([resumeText], { type: 'text/plain;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `S_Nivetha_MERN_Developer_Resume.txt`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+    onShowToast?.('Resume file downloaded successfully!', 'success')
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+      <div
+        className="relative w-full max-w-4xl max-h-[92vh] bg-[#111827] text-white rounded-3xl shadow-2xl border border-[#81D8D0]/40 overflow-hidden flex flex-col animate-in zoom-in-95 duration-200"
+        onClick={(e) => e.stopPropagation()}
+        spellCheck="false"
+      >
+        {/* Top Control Bar (Hidden when printing) */}
+        <div className="print:hidden flex items-center justify-between px-6 py-4 bg-[#0E1524] border-b border-gray-800">
+          <div className="flex items-center gap-2">
+            <FileText className="w-5 h-5 text-[#81D8D0]" />
+            <span className="font-extrabold text-white text-base">
+              Resume Preview — S. Nivetha
+            </span>
+            <span className="hidden sm:inline-block text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#162032] text-[#81D8D0] border border-[#81D8D0]/30">
+              1 Year Experience
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <a
+              href="/Nivetha_S_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-gray-200 bg-[#162032] hover:bg-[#1a2942] border border-gray-700 shadow-xs cursor-pointer"
+            >
+              <Printer className="w-3.5 h-3.5" />
+              <span>Open PDF</span>
+            </a>
+            <a
+              href="/Nivetha_S_Resume.pdf"
+              download="Nivetha_S_Resume.pdf"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-[#0B0F17] bg-[#81D8D0] hover:bg-[#57beb4] shadow-xs cursor-pointer"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download PDF</span>
+            </a>
+            <button
+              onClick={onClose}
+              className="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-colors ml-1"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Scrollable Printable Document Container */}
+        <div className="p-6 sm:p-10 overflow-y-auto space-y-8 text-gray-200 bg-[#111827] print:bg-white print:text-black print:p-0 print:overflow-visible">
+          {/* Header */}
+          <div className="border-b-2 border-[#81D8D0] pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h1 className="text-3xl font-black text-white print:text-black tracking-tight">
+                {personalInfo.name}
+              </h1>
+              <p className="text-base font-bold text-[#81D8D0] print:text-teal-700 mt-0.5">
+                {personalInfo.title}
+              </p>
+            </div>
+            <div className="text-xs text-gray-400 print:text-gray-700 space-y-1 sm:text-right">
+              <p className="flex items-center sm:justify-end gap-1.5 font-medium">
+                <MapPin className="w-3.5 h-3.5 text-[#81D8D0]" />
+                {personalInfo.location}
+              </p>
+              <p className="flex items-center sm:justify-end gap-1.5 font-medium">
+                <Mail className="w-3.5 h-3.5 text-[#81D8D0]" />
+                {personalInfo.email}
+              </p>
+            </div>
+          </div>
+
+          {/* Summary */}
+          <div>
+            <h2 className="text-xs font-extrabold uppercase tracking-widest text-gray-400 print:text-gray-600 mb-2 border-b border-gray-800 print:border-gray-200 pb-1">
+              Professional Summary
+            </h2>
+            <p className="text-sm text-gray-300 print:text-gray-800 leading-relaxed">
+              MERN Stack Developer & Full Stack Developer with 1 year of experience building responsive, API-driven web applications and admin panels with clean UI, reusable components, and reliable backend integration.
+            </p>
+          </div>
+
+          {/* Technical Skills */}
+          <div>
+            <h2 className="text-xs font-extrabold uppercase tracking-widest text-gray-400 print:text-gray-600 mb-3 border-b border-gray-800 print:border-gray-200 pb-1">
+              Technical Core Competencies
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div className="p-3 rounded-xl bg-[#0B0F17] print:bg-gray-100 border border-gray-800 print:border-gray-200">
+                <span className="font-bold text-white print:text-black">Frontend: </span>
+                <span className="text-gray-300 print:text-gray-700">React.js, JavaScript (ES6+), Tailwind CSS, HTML5 & CSS3</span>
+              </div>
+              <div className="p-3 rounded-xl bg-[#0B0F17] print:bg-gray-100 border border-gray-800 print:border-gray-200">
+                <span className="font-bold text-white print:text-black">Backend: </span>
+                <span className="text-gray-300 print:text-gray-700">Node.js, Express.js, RESTful APIs, Backend Integration</span>
+              </div>
+              <div className="p-3 rounded-xl bg-[#0B0F17] print:bg-gray-100 border border-gray-800 print:border-gray-200">
+                <span className="font-bold text-white print:text-black">Database: </span>
+                <span className="text-gray-300 print:text-gray-700">MongoDB, Mongoose ODM, Data Schemas</span>
+              </div>
+              <div className="p-3 rounded-xl bg-[#0B0F17] print:bg-gray-100 border border-gray-800 print:border-gray-200">
+                <span className="font-bold text-white print:text-black">Tools: </span>
+                <span className="text-gray-300 print:text-gray-700">Git & GitHub, Postman, Vite</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Professional Experience */}
+          <div>
+            <h2 className="text-xs font-extrabold uppercase tracking-widest text-gray-400 print:text-gray-600 mb-4 border-b border-gray-800 print:border-gray-200 pb-1">
+              Professional Experience
+            </h2>
+            <div className="space-y-6">
+              {experienceData.map((exp, idx) => (
+                <div key={idx} className="space-y-2">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="text-sm font-bold text-white print:text-black">
+                        {exp.role}
+                      </h3>
+                      <p className="text-xs text-gray-400 print:text-gray-600">{exp.location}</p>
+                    </div>
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-[#162032] print:bg-gray-200 text-[#81D8D0] print:text-black">
+                      {exp.period}
+                    </span>
+                  </div>
+                  <ul className="list-disc list-inside space-y-1 text-xs text-gray-300 print:text-gray-700 pl-1 leading-relaxed">
+                    {exp.achievements.map((ach, aIdx) => (
+                      <li key={aIdx}>{ach}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Projects */}
+          <div>
+            <h2 className="text-xs font-extrabold uppercase tracking-widest text-gray-400 print:text-gray-600 mb-4 border-b border-gray-800 print:border-gray-200 pb-1">
+              Key Projects
+            </h2>
+            <div className="space-y-4 text-xs">
+              {projectsData.map((p, idx) => (
+                <div key={idx} className="p-3.5 rounded-xl border border-gray-800 print:border-gray-200 space-y-1.5">
+                  <div className="flex justify-between items-center">
+                    <span className="font-bold text-white print:text-black text-sm">{p.title}</span>
+                    <span className="text-[11px] text-gray-400">{p.badge}</span>
+                  </div>
+                  <p className="text-gray-300 print:text-gray-700">{p.shortDescription}</p>
+                  <p className="text-[11px] text-[#81D8D0] print:text-teal-700 font-semibold">
+                    Tech: {p.techStack.join(' • ')}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Education & Certifications */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+            <div>
+              <h2 className="text-xs font-extrabold uppercase tracking-widest text-gray-400 print:text-gray-600 mb-2 border-b border-gray-800 print:border-gray-200 pb-1">
+                Education
+              </h2>
+              {educationData.map((edu, idx) => (
+                <div key={idx} className="text-xs space-y-0.5">
+                  <p className="font-bold text-white print:text-black">{edu.degree}</p>
+                  <p className="text-gray-400 print:text-gray-700">
+                    {edu.institution ? `${edu.institution} - ` : ''}{edu.location}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div>
+              <h2 className="text-xs font-extrabold uppercase tracking-widest text-gray-400 print:text-gray-600 mb-2 border-b border-gray-800 print:border-gray-200 pb-1">
+                Certifications
+              </h2>
+              <div className="space-y-1 text-xs text-gray-300 print:text-gray-700">
+                {certificationsData.map((c, idx) => (
+                  <p key={idx}>
+                    • <span className="font-semibold text-white print:text-black">{c.name}</span> ({c.issuer})
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
