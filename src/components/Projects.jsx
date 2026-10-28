@@ -74,18 +74,6 @@ export default function Projects({ onSelectProject }) {
                     className="project-card-img w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 rounded-lg"
                     loading="lazy"
                   />
-                  {project.liveUrl && project.liveUrl !== '#contact' && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-black/80 hover:bg-[var(--accent-color)] text-gray-200 hover:text-[#0B0F17] flex items-center justify-center transition-all shadow-md z-10"
-                      title="Open Live Website Directly"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  )}
                 </div>
 
                 {/* Title & Description */}
