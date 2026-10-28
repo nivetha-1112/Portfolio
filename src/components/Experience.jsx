@@ -33,34 +33,36 @@ export default function Experience() {
 
             <div className="tunis-timeline-list">
               {experienceData.map((exp, idx) => (
-                <div key={idx} className="tunis-timeline-card">
-                  <div className="timeline-card-header">
-                    <span className="tunis-date-badge current">
-                      {exp.period}
-                    </span>
-                    <span className="tunis-item-location">
-                      <MapPin className="w-3.5 h-3.5 text-[var(--accent-color)]" />
-                      {exp.location}
-                    </span>
+                <div key={idx} className="tunis-timeline-card resume-exp-card">
+                  <div>
+                    <div className="timeline-card-header my-1">
+                      <span className="tunis-date-badge current">
+                        {exp.period}
+                      </span>
+                      <span className="tunis-item-location">
+                        <MapPin className="w-3.5 h-3.5 text-[var(--accent-color)]" />
+                        {exp.location}
+                      </span>
+                    </div>
+
+                    <h5 className="tunis-item-title">{exp.role}</h5>
+                    <div className="tunis-item-company">
+                      <Briefcase className="w-3.5 h-3.5" />
+                      <span>{exp.company}</span>
+                    </div>
+
+                    <ul className="tunis-item-desc space-y-2 mb-4">
+                      {exp.achievements.slice(0, 6).map((point, pIdx) => (
+                        <li key={pIdx}>{point}</li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <h5 className="tunis-item-title">{exp.role}</h5>
-                  <div className="tunis-item-company">
-                    <Briefcase className="w-3.5 h-3.5" />
-                    <span>{exp.company}</span>
-                  </div>
-
-                  <ul className="tunis-item-desc">
-                    {exp.achievements.slice(0, 5).map((point, pIdx) => (
-                      <li key={pIdx}>{point}</li>
-                    ))}
-                  </ul>
-
-                  <div className="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-[var(--border-color)]">
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[var(--border-color)]">
                     {exp.tech.map((tech, tIdx) => (
                       <span
                         key={tIdx}
-                        className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)]"
+                        className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border-color)]"
                       >
                         {tech}
                       </span>
@@ -82,21 +84,23 @@ export default function Experience() {
 
             <div className="tunis-timeline-list">
               {educationData.map((edu, idx) => (
-                <div key={idx} className="tunis-timeline-card">
-                  <div className="timeline-card-header">
-                    <span className="tunis-date-badge">
-                      {edu.period}
-                    </span>
-                    <span className="tunis-item-location">
-                      <MapPin className="w-3.5 h-3.5 text-[var(--accent-color)]" />
-                      {edu.location}
-                    </span>
-                  </div>
+                <div key={idx} className="tunis-timeline-card resume-edu-card">
+                  <div>
+                    <div className="timeline-card-header">
+                      <span className="tunis-date-badge">
+                        {edu.period}
+                      </span>
+                      <span className="tunis-item-location">
+                        <MapPin className="w-3.5 h-3.5 text-[var(--accent-color)]" />
+                        {edu.location}
+                      </span>
+                    </div>
 
-                  <h5 className="tunis-item-title">{edu.degree}</h5>
-                  <div className="tunis-item-company">
-                    <GraduationCap className="w-3.5 h-3.5" />
-                    <span>{edu.institution}</span>
+                    <h5 className="tunis-item-title">{edu.degree}</h5>
+                    <div className="tunis-item-company">
+                      <GraduationCap className="w-3.5 h-3.5" />
+                      <span>{edu.institution}</span>
+                    </div>
                   </div>
 
                   <p className="text-xs text-[var(--text-secondary)] leading-relaxed mt-2">
@@ -107,20 +111,22 @@ export default function Experience() {
 
               {/* Certification Card */}
               {certificationsData.map((cert, idx) => (
-                <div key={`cert-${idx}`} className="tunis-timeline-card">
-                  <div className="timeline-card-header">
-                    <span className="tunis-date-badge">
-                      {cert.period || '2025'}
-                    </span>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--accent-color)]">
-                      Certification
-                    </span>
-                  </div>
+                <div key={`cert-${idx}`} className="tunis-timeline-card resume-edu-card">
+                  <div>
+                    <div className="timeline-card-header">
+                      <span className="tunis-date-badge">
+                        {cert.period || '2025'}
+                      </span>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--accent-color)]">
+                        Certification
+                      </span>
+                    </div>
 
-                  <h5 className="tunis-item-title">{cert.name}</h5>
-                  <div className="tunis-item-company">
-                    <Award className="w-3.5 h-3.5" />
-                    <span>Issued by {cert.issuer}</span>
+                    <h5 className="tunis-item-title">{cert.name}</h5>
+                    <div className="tunis-item-company">
+                      <Award className="w-3.5 h-3.5" />
+                      <span>Issued by {cert.issuer}</span>
+                    </div>
                   </div>
 
                   <p className="text-xs text-[var(--text-secondary)] leading-relaxed mt-2">

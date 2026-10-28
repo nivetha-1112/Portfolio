@@ -19,14 +19,14 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-[var(--bg-primary)] text-[var(--text-primary)] pt-16 pb-12 border-t border-[var(--border-color)] relative z-10">
+    <footer className="bg-[var(--bg-primary)] text-[var(--text-primary)] pt-16 pb-12 max-[992px]:pb-28 border-t border-[var(--border-color)] relative z-10 overflow-hidden">
       <div className="tunis-container">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[var(--border-color)]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-[var(--border-color)] items-start">
           {/* Column 1: Brand & Bio (Span 5 on large screens) */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-[var(--accent-color)] flex items-center justify-center font-black text-[#0B0F17] text-xl shadow-lg">
+              <div className="w-11 h-11 rounded-2xl bg-[var(--accent-color)] flex items-center justify-center font-black text-[#0B0F17] text-lg shadow-lg flex-shrink-0">
                 SN
               </div>
               <div>
@@ -44,17 +44,17 @@ export default function Footer() {
             </p>
 
             <div className="flex items-center gap-2 text-xs text-[var(--text-muted)] pt-1">
-              <MapPin className="w-3.5 h-3.5 text-[var(--accent-color)]" />
+              <MapPin className="w-3.5 h-3.5 text-[var(--accent-color)] flex-shrink-0" />
               <span>{personalInfo.location}</span>
             </div>
           </div>
 
           {/* Column 2: Navigation Links (Span 4 on large screens) */}
           <div className="lg:col-span-4 space-y-4">
-            <h4 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest border-b border-[var(--border-color)] pb-2">
+            <h4 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest border-b border-[var(--border-color)] pb-2.5">
               Quick Navigation
             </h4>
-            <div className="grid grid-cols-2 gap-y-2.5 gap-x-4 text-sm">
+            <div className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -64,7 +64,7 @@ export default function Footer() {
                   <span className="text-xs text-[var(--accent-color)] opacity-0 group-hover:opacity-100 transition-opacity">
                     →
                   </span>
-                  <span>{link.name}</span>
+                  <span className="group-hover:translate-x-0.5 transition-transform">{link.name}</span>
                 </a>
               ))}
             </div>
@@ -72,11 +72,11 @@ export default function Footer() {
 
           {/* Column 3: Contact & Socials (Span 3 on large screens) */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest border-b border-[var(--border-color)] pb-2">
+            <h4 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest border-b border-[var(--border-color)] pb-2.5">
               Connect With Me
             </h4>
 
-            <div className="space-y-2 text-xs text-[var(--text-secondary)]">
+            <div className="space-y-2.5 text-xs text-[var(--text-secondary)]">
               <a
                 href={`mailto:${personalInfo.email}`}
                 className="flex items-center gap-2 hover:text-[var(--accent-color)] transition-colors"
@@ -93,7 +93,7 @@ export default function Footer() {
               </a>
             </div>
 
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-2.5 pt-1.5">
               <a
                 href={personalInfo.github}
                 target="_blank"
@@ -102,7 +102,7 @@ export default function Footer() {
                 className="social-icon-btn"
                 title="GitHub Profile"
               >
-                <GithubIcon className="w-5 h-5" />
+                <GithubIcon className="w-4 h-4" />
               </a>
               <a
                 href={personalInfo.linkedin}
@@ -112,7 +112,7 @@ export default function Footer() {
                 className="social-icon-btn"
                 title="LinkedIn Profile"
               >
-                <LinkedinIcon className="w-5 h-5" />
+                <LinkedinIcon className="w-4 h-4" />
               </a>
               <a
                 href={`mailto:${personalInfo.email}`}
@@ -120,25 +120,25 @@ export default function Footer() {
                 className="social-icon-btn"
                 title="Email Me"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-4 h-4" />
               </a>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar: Copyright & Back to Top */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-muted)]">
-          <p className="text-center sm:text-left">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-muted)] w-full">
+          <p className="text-center sm:text-left order-2 sm:order-1">
             © {new Date().getFullYear()} <span className="text-[var(--text-primary)] font-semibold">{personalInfo.name}</span>. All rights reserved.
           </p>
 
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all cursor-pointer shadow-sm group"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all cursor-pointer shadow-sm group order-1 sm:order-2 self-center sm:self-auto"
             aria-label="Scroll back to top"
           >
-            <span className="font-semibold text-xs tracking-wide">Back to Top</span>
-            <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+            <span className="font-bold text-xs tracking-wide">Back to Top</span>
+            <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform text-[var(--accent-color)]" />
           </button>
         </div>
       </div>

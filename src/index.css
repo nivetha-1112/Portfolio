@@ -59,6 +59,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 40px;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -132,6 +133,8 @@ button {
   margin-bottom: 4rem;
   padding: 1.5rem 0;
   position: relative;
+  overflow: hidden;
+  width: 100%;
 }
 
 .tunis-watermark {
@@ -294,6 +297,7 @@ button {
 .tunis-section {
   padding: 5.5rem 0;
   position: relative;
+  overflow-x: clip;
 }
 
 @media (max-width: 992px) {
@@ -303,9 +307,6 @@ button {
   }
   .tunis-section {
     padding: 4rem 0 !important;
-  }
-  main {
-    padding-bottom: 85px;
   }
 }
 

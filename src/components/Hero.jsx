@@ -30,7 +30,7 @@ export default function Hero({ onOpenResume }) {
 
       <div className="tunis-container">
         <div className="hero-tunis-grid">
-          {/* Left Column: Tunis Portrait Card */}
+          {/* Left Column: Profile Image without box background */}
           <div className="hero-image-wrapper">
             <div className="hero-image-card">
               <img
@@ -38,7 +38,6 @@ export default function Hero({ onOpenResume }) {
                 alt={personalInfo.name}
                 className="hero-profile-img"
               />
-              <div className="hero-img-overlay" />
             </div>
           </div>
 

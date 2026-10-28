@@ -99,19 +99,14 @@ export default function Projects({ onSelectProject }) {
               <div>
                 {/* Tech Tags */}
                 <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.techStack.slice(0, 4).map((tech, tIdx) => (
+                  {project.techStack.map((tech, tIdx) => (
                     <span
                       key={tIdx}
-                      className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)]"
+                      className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border-color)]"
                     >
                       {tech}
                     </span>
                   ))}
-                  {project.techStack.length > 4 && (
-                    <span className="text-[11px] font-semibold px-1.5 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-muted)]">
-                      +{project.techStack.length - 4}
-                    </span>
-                  )}
                 </div>
 
                 {/* Bottom Row */}

@@ -108,11 +108,11 @@ ${certificationsData
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md p-3 sm:p-6 flex items-center justify-center animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[90vh] bg-[#111827] text-white rounded-3xl shadow-2xl border border-white/10 overflow-hidden flex flex-col"
+        className="relative w-full max-w-4xl max-h-[88vh] my-auto bg-[#111827] text-white rounded-2xl sm:rounded-3xl shadow-2xl border border-white/10 overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
         spellCheck="false"
       >
@@ -157,7 +157,7 @@ ${certificationsData
         </div>
 
         {/* Scrollable Printable Document Container */}
-        <div className="flex-1 p-6 sm:p-10 overflow-y-auto space-y-8 text-gray-200 bg-[#111827] print:bg-white print:text-black print:p-0 print:overflow-visible">
+        <div className="flex-1 min-h-0 p-6 sm:p-10 overflow-y-auto space-y-8 text-gray-200 bg-[#111827] print:bg-white print:text-black print:p-0 print:overflow-visible">
           {/* Header */}
           <div className="border-b-2 border-[var(--accent-color)] pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
