@@ -30,7 +30,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased relative selection:bg-[var(--accent-color)] selection:text-[#0B0F17]">
+    <div className="min-h-screen flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased relative selection:bg-[var(--accent-color)] selection:text-[#0B0F17] overflow-x-hidden w-full max-w-full">
       {/* Tunis Floating Desktop Right Navigation & Mobile Dock + Theme & Color Switcher */}
       <TunisNav />
 
