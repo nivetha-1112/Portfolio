@@ -294,8 +294,15 @@ button {
   padding: 0 1.25rem;
 }
 
+@media (min-width: 993px) {
+  .tunis-container {
+    padding-right: 5.5rem !important; /* 88px clearance for desktop fixed right nav dock */
+    padding-left: 1.5rem !important;
+  }
+}
+
 .tunis-section {
-  padding: 5.5rem 0;
+  padding: 3.5rem 0;
   position: relative;
   overflow-x: clip;
 }
@@ -306,7 +313,7 @@ button {
     padding: 0 0.75rem !important;
   }
   .tunis-section {
-    padding: 4rem 0 !important;
+    padding: 2.75rem 0 !important;
   }
 }
 
@@ -316,7 +323,7 @@ button {
     padding: 0 0.85rem !important;
   }
   .tunis-section {
-    padding: 3rem 0 !important;
+    padding: 2.25rem 0 !important;
   }
 }
 

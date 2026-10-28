@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { X, CheckCircle2, CircleDot, Layers, Briefcase, Code2 } from 'lucide-react'
+import { X, ExternalLink, CheckCircle2, CircleDot, Briefcase, Code2, Globe } from 'lucide-react'
 
 export default function ProjectModal({ project, onClose }) {
   useEffect(() => {
@@ -16,6 +16,16 @@ export default function ProjectModal({ project, onClose }) {
 
   if (!project) return null
 
+  const isHttpLink = project.liveUrl && project.liveUrl.startsWith('http')
+
+  const handleLinkClick = (e) => {
+    if (!isHttpLink && project.liveUrl === '#contact') {
+      e.preventDefault()
+      onClose()
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <div
       className="tunis-modal-backdrop"
@@ -28,21 +38,30 @@ export default function ProjectModal({ project, onClose }) {
         onClick={(e) => e.stopPropagation()}
         spellCheck="false"
       >
-        {/* Modal Header */}
+        {/* Modal Header: Clean, with Title and Project Link */}
         <div className="tunis-modal-header">
           <div className="min-w-0 pr-4">
-            <div className="flex items-center gap-2 mb-2 flex-wrap">
-              <span className="px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider text-[var(--accent-color)] border border-[var(--accent-color)]/30 bg-[var(--accent-color)]/10">
-                {project.company || 'OCEAN SOFTWARES'}
-              </span>
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                {project.badge || 'Live System'}
-              </span>
-            </div>
             <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight">
               {project.shortTitle || project.title}
             </h3>
+
+            {/* Direct Project Link */}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target={isHttpLink ? '_blank' : '_self'}
+                rel="noopener noreferrer"
+                onClick={handleLinkClick}
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[var(--accent-color)] hover:underline mt-2 group cursor-pointer max-w-full"
+                title={isHttpLink ? `Visit ${project.liveUrl}` : "Inquire / Contact"}
+              >
+                <Globe className="w-4 h-4 flex-shrink-0" />
+                <span className="truncate">
+                  {isHttpLink ? project.liveUrl.replace(/^https?:\/\//, '') : 'Live Platform (Contact / Demo)'}
+                </span>
+                <ExternalLink className="w-3.5 h-3.5 opacity-80 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+              </a>
+            )}
           </div>
 
           <button
@@ -54,43 +73,64 @@ export default function ProjectModal({ project, onClose }) {
           </button>
         </div>
 
-        {/* Scrollable Modal Body with Generous Spacing */}
-        <div className="tunis-modal-body space-y-8">
-          {/* Screenshot Presentation Banner (Clean showcase, no live links) */}
+        {/* Scrollable Modal Body: Generously Spaced & Properly Aligned */}
+        <div className="tunis-modal-body space-y-7">
+          {/* Screenshot Presentation Banner */}
           {project.image && (
             <div className="w-full rounded-2xl overflow-hidden bg-white/95 border border-white/10 p-2 shadow-xl">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-auto max-h-[360px] object-cover object-top rounded-xl"
-              />
+              {project.liveUrl ? (
+                <a
+                  href={project.liveUrl}
+                  target={isHttpLink ? '_blank' : '_self'}
+                  rel="noopener noreferrer"
+                  onClick={handleLinkClick}
+                  className="block relative cursor-pointer group"
+                  title="Click to open project link"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-auto max-h-[300px] sm:max-h-[360px] object-cover object-top rounded-xl group-hover:opacity-95 transition-opacity"
+                  />
+                  <div className="absolute top-3 right-3 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white text-xs font-bold flex items-center gap-2 border border-white/15 opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                    <span>Open Live Link</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-[var(--accent-color)]" />
+                  </div>
+                </a>
+              ) : (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-auto max-h-[300px] sm:max-h-[360px] object-cover object-top rounded-xl"
+                />
+              )}
             </div>
           )}
 
-          {/* Section: Project Architecture & Impact */}
-          <div className="space-y-3">
+          {/* Section: Project Architecture & Impact (Generous Spacing) */}
+          <div className="space-y-3 pt-1">
             <div className="flex items-center gap-2.5">
               <span className="w-1.5 h-4 bg-[var(--accent-color)] rounded-full" />
               <h4 className="text-xs font-black uppercase tracking-widest text-white">
                 PROJECT ARCHITECTURE & IMPACT
               </h4>
             </div>
-            <p className="text-gray-300 text-sm sm:text-base leading-relaxed pl-4 border-l border-white/10">
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed pl-4 border-l-2 border-white/10">
               {project.fullDescription || project.shortDescription}
             </p>
           </div>
 
-          {/* Bento Box: Engineering Roles & Technology Stack */}
+          {/* Bento Box: Engineering Roles & Technology Stack (Generous Padding & Gaps) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 sm:p-7 rounded-2xl bg-[#0B0F17] border border-white/10 shadow-lg">
             {/* Left: Engineering Roles */}
             <div className="space-y-4">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 pb-1 border-b border-white/5">
                 <Briefcase className="w-4 h-4 text-[var(--accent-color)]" />
                 <h5 className="text-xs font-extrabold uppercase tracking-wider text-gray-400">
                   ENGINEERING ROLES
                 </h5>
               </div>
-              <div className="space-y-2.5">
+              <div className="space-y-3">
                 {(project.roles || [
                   'Frontend Development',
                   'Backend API Integration',
@@ -107,7 +147,7 @@ export default function ProjectModal({ project, onClose }) {
 
             {/* Right: Technology Stack */}
             <div className="space-y-4">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 pb-1 border-b border-white/5">
                 <Code2 className="w-4 h-4 text-[var(--accent-color)]" />
                 <h5 className="text-xs font-extrabold uppercase tracking-wider text-gray-400">
                   TECHNOLOGY STACK
@@ -127,19 +167,19 @@ export default function ProjectModal({ project, onClose }) {
             </div>
           </div>
 
-          {/* Section: Core Deliverables & Features */}
+          {/* Section: Key Deliverables & Modules (Spacious & Clean) */}
           {project.features && project.features.length > 0 && (
             <div className="p-6 sm:p-7 rounded-2xl bg-[#0B0F17] border border-white/10 space-y-4 shadow-lg">
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2.5 pb-1 border-b border-white/5">
                 <span className="w-1.5 h-4 bg-[var(--accent-color)] rounded-full" />
                 <h4 className="text-xs font-black uppercase tracking-widest text-white">
-                  KEY ENGINEERED FEATURES & DELIVERABLES
+                  KEY DELIVERABLES & MODULES
                 </h4>
               </div>
-              <div className="space-y-3 pl-2">
+              <div className="space-y-3.5 pl-2">
                 {project.features.map((feat, idx) => (
-                  <div key={idx} className="flex items-start gap-3 text-sm text-gray-300 leading-relaxed">
-                    <CheckCircle2 className="w-4 h-4 text-[var(--accent-color)] flex-shrink-0 mt-1" />
+                  <div key={idx} className="flex items-start gap-3.5 text-sm text-gray-300 leading-relaxed">
+                    <CheckCircle2 className="w-4 h-4 text-[var(--accent-color)] flex-shrink-0 mt-0.5" />
                     <span>{feat}</span>
                   </div>
                 ))}
@@ -147,16 +187,16 @@ export default function ProjectModal({ project, onClose }) {
             </div>
           )}
 
-          {/* Bottom Project Metadata Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10 text-xs text-gray-400">
+          {/* Compact Bottom Metadata Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-5 pb-2 border-t border-white/10 text-xs text-gray-400">
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-gray-400">Domain / Type:</span>
+              <span className="font-semibold text-gray-400">Domain:</span>
               <span className="px-3 py-1 rounded-full bg-[#162032] text-[var(--accent-color)] border border-white/10 font-bold">
                 {project.category}
               </span>
             </div>
             <div className="flex items-center gap-2 text-gray-400">
-              <span className="font-semibold">Developed at:</span>
+              <span className="font-semibold">Project at:</span>
               <span className="text-white font-bold">{project.company || 'Ocean Softwares'}</span>
             </div>
           </div>

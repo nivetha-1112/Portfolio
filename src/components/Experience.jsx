@@ -35,7 +35,7 @@ export default function Experience() {
               {experienceData.map((exp, idx) => (
                 <div key={idx} className="tunis-timeline-card resume-exp-card">
                   <div>
-                    <div className="timeline-card-header my-1">
+                    <div className="timeline-card-header mb-4">
                       <span className="tunis-date-badge current">
                         {exp.period}
                       </span>
@@ -45,29 +45,31 @@ export default function Experience() {
                       </span>
                     </div>
 
-                    <h5 className="tunis-item-title">{exp.role}</h5>
-                    <div className="tunis-item-company">
-                      <Briefcase className="w-3.5 h-3.5" />
+                    <h5 className="tunis-item-title mt-2 mb-3">{exp.role}</h5>
+                    <div className="tunis-item-company mb-4">
+                      <Briefcase className="w-4 h-4 text-[var(--accent-color)]" />
                       <span>{exp.company}</span>
                     </div>
 
-                    <ul className="tunis-item-desc space-y-2 mb-4">
-                      {exp.achievements.slice(0, 6).map((point, pIdx) => (
+                    <ul className="tunis-item-desc space-y-2.5 mb-5">
+                      {exp.achievements.map((point, pIdx) => (
                         <li key={pIdx}>{point}</li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[var(--border-color)]">
-                    {exp.tech.map((tech, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border-color)]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  {exp.tech && exp.tech.filter(Boolean).length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[var(--border-color)]">
+                      {exp.tech.filter(Boolean).map((tech, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border-color)]"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

@@ -3,11 +3,8 @@ import {
   ArrowRight,
   Download,
   MapPin,
-  Sparkles,
-  Mail,
   Briefcase
 } from 'lucide-react'
-import { GithubIcon, LinkedinIcon } from './Icons'
 import { personalInfo } from '../data/portfolioData'
 import profileImg from '../assets/profile.jpeg'
 
@@ -101,37 +98,7 @@ export default function Hero({ onOpenResume }) {
               </a>
             </div>
 
-            {/* Social Links */}
-            <div className="flex items-center gap-3 pt-6">
-              <a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon-btn"
-                aria-label="GitHub Profile"
-                title="GitHub Profile"
-              >
-                <GithubIcon className="w-5 h-5" />
-              </a>
-              <a
-                href={personalInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon-btn"
-                aria-label="LinkedIn Profile"
-                title="LinkedIn Profile"
-              >
-                <LinkedinIcon className="w-5 h-5" />
-              </a>
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="social-icon-btn"
-                aria-label="Send Email"
-                title="Send Email"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
-            </div>
+            
           </div>
         </div>
       </div>

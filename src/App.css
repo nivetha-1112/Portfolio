@@ -989,24 +989,23 @@
 .tunis-resume-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3.5rem;
+  gap: 3rem;
   margin-top: 1rem;
   position: relative;
   z-index: 2;
-  align-items: stretch;
+  align-items: start;
 }
 
 .resume-column {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .resume-col-header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
   min-height: 42px;
 }
 
@@ -1036,31 +1035,25 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  flex: 1;
-  height: 100%;
-  justify-content: space-between;
 }
 
 .resume-exp-card {
-  flex: 1;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  height: auto;
 }
 
 .resume-edu-card {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  height: auto;
 }
 
 .tunis-timeline-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 1.25rem;
-  padding: 1.5rem 1.65rem;
+  padding: 1.6rem 1.75rem;
   box-shadow: var(--card-shadow);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -1068,7 +1061,7 @@
 
 .tunis-timeline-card:hover {
   border-color: var(--border-highlight);
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: 0 16px 35px -8px rgba(0, 0, 0, 0.55);
 }
 
@@ -1078,7 +1071,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.15rem;
 }
 
 .tunis-date-badge {
@@ -1109,21 +1102,22 @@
 }
 
 .tunis-item-title {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--text-primary);
   line-height: 1.35;
-  margin-bottom: 0.35rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.65rem;
 }
 
 .tunis-item-company {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   font-size: 0.88rem;
   font-weight: 700;
   color: var(--accent-color);
-  margin-bottom: 0.85rem;
+  margin-bottom: 1.25rem;
 }
 
 .tunis-item-desc {
@@ -1503,13 +1497,12 @@ body.modal-open {
 
 .tunis-modal-dialog {
   position: relative;
-  width: 100%;
+  width: 90%;
   max-width: 860px;
-  height: 88vh;
-  max-height: 860px;
+  max-height: 88vh;
   background-color: #111622;
   color: #ffffff;
-  border-radius: 1.5rem;
+  border-radius: 1.75rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 35px 100px rgba(0, 0, 0, 0.95);
   display: flex;
@@ -1545,7 +1538,7 @@ body.modal-open {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  padding: 2rem 2.25rem 3.5rem;
+  padding: 1.75rem 2.25rem 3rem;
   overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 245, 212, 0.35) rgba(255, 255, 255, 0.05);
@@ -1654,9 +1647,10 @@ body.modal-open {
   pointer-events: none;
 }
 
+/* Web View: Clean 3-Column Grid with perfectly balanced columns */
 .tunis-footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-columns: 1.25fr 1fr 1fr;
   gap: 3.5rem;
   padding-bottom: 3rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -1665,8 +1659,8 @@ body.modal-open {
 
 @media (max-width: 1024px) {
   .tunis-footer-grid {
-    grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 2.5rem;
+    grid-template-columns: 1.15fr 1fr 1fr;
+    gap: 2rem;
   }
 }
 
@@ -1683,12 +1677,12 @@ body.modal-open {
 }
 
 .tunis-footer-title {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--text-muted);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   position: relative;
   display: inline-block;
   padding-bottom: 0.5rem;
@@ -1699,54 +1693,119 @@ body.modal-open {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 24px;
+  width: 28px;
   height: 2px;
   background: var(--accent-color);
   border-radius: 2px;
 }
 
-.tunis-footer-links-grid {
+.tunis-footer-nav-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem 1.25rem;
+  gap: 1.5rem;
+}
+
+.tunis-footer-nav-subcol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
 }
 
 .tunis-footer-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
   font-size: 0.875rem;
   color: var(--text-secondary);
   text-decoration: none;
   transition: all 0.25s ease;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .tunis-footer-link:hover {
   color: var(--accent-color);
-  transform: translateX(3px);
+  transform: translateX(4px);
+}
+
+.tunis-footer-contact-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 330px;
+  width: 100%;
 }
 
 .tunis-footer-contact-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.65rem 0.95rem;
-  border-radius: 12px;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-secondary);
-  font-size: 0.825rem;
   text-decoration: none;
   transition: all 0.25s ease;
-  margin-bottom: 0.65rem;
+  width: 100%;
+}
+
+.tunis-footer-contact-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(0, 245, 212, 0.08);
+  border: 1px solid rgba(0, 245, 212, 0.18);
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
 }
 
 .tunis-footer-contact-item:hover {
-  background: rgba(0, 245, 212, 0.08);
+  background: rgba(0, 245, 212, 0.06);
   border-color: rgba(0, 245, 212, 0.35);
-  color: var(--accent-color);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.tunis-footer-contact-item:hover .tunis-footer-contact-icon {
+  background: var(--accent-color);
+  color: #0b0f17;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.tunis-footer-social-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.tunis-footer-social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.25s ease;
+  text-decoration: none;
+  outline: none;
+}
+
+.tunis-footer-social-btn:hover {
+  background-color: var(--accent-color);
+  color: #0b0f17;
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--accent-glow);
 }
 
 .tunis-footer-bottom {

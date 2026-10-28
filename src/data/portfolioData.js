@@ -214,39 +214,11 @@ export const experienceData = [
       "Integrate email functionality into client websites so enquiries and form submissions reach business owners directly.",
       "Debug issues, test APIs with Postman, and collaborate with the engineering team via Git and GitHub."
     ],
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "MySQL", "Tailwind CSS", "Bootstrap", "REST APIs"]
+    tech: [""]
   }
 ];
 
 export const projectsData = [
-  {
-    id: "serviq-platform",
-    title: "Serviq - Restaurant Management Platform",
-    shortTitle: "Serviq Platform",
-    company: "OCEAN SOFTWARES",
-    subTag: "Serviq Admin & POS",
-    category: "Admin Panels",
-    badge: "Active Development",
-    image: "/serviq.png",
-    shortDescription: "Restaurant management platform where I own the admin panel UI, inventory management module, and complete frontend-backend API integration.",
-    fullDescription: "A comprehensive enterprise management platform designed to digitize and streamline restaurant operations, inventory tracking, order management, and administrative records through secure CRUD operations.",
-    features: [
-      "Developed the complete admin panel UI for managing restaurant operations and records",
-      "Built the inventory management module to add, update, track, and manage stock items with full CRUD operations",
-      "Integrated the entire admin panel with backend REST APIs, complete with form validation and error handling",
-      "Responsive layouts and reusable components built with React.js"
-    ],
-    roles: [
-      "Frontend Development",
-      "Backend Development",
-      "Database Architecture",
-      "REST API Integration",
-      "Inventory Management Module"
-    ],
-    techStack: ["React", "Node.js", "Express.js", "REST APIs", "Tailwind CSS"],
-    githubUrl: "https://github.com/nivetha-os",
-    liveUrl: "#contact"
-  },
   {
     id: "theatre-booking",
     title: "Private Theatre Booking Website & Admin Panel",
@@ -330,6 +302,34 @@ export const projectsData = [
     techStack: ["HTML5", "CSS3", "PHP", "Email Integration"],
     githubUrl: "https://github.com/nivetha-os",
     liveUrl: "https://campaign.assettreehomes.com"
+  },
+  {
+    id: "serviq-platform",
+    title: "Serviq - Restaurant Management Platform",
+    shortTitle: "Serviq Platform",
+    company: "OCEAN SOFTWARES",
+    subTag: "Serviq Admin & POS",
+    category: "Admin Panels",
+    badge: "Active Development",
+    image: "/serviq.png",
+    shortDescription: "Restaurant management platform where I own the admin panel UI, inventory management module, and complete frontend-backend API integration.",
+    fullDescription: "A comprehensive enterprise management platform designed to digitize and streamline restaurant operations, inventory tracking, order management, and administrative records through secure CRUD operations.",
+    features: [
+      "Developed the complete admin panel UI for managing restaurant operations and records",
+      "Built the inventory management module to add, update, track, and manage stock items with full CRUD operations",
+      "Integrated the entire admin panel with backend REST APIs, complete with form validation and error handling",
+      "Responsive layouts and reusable components built with React.js"
+    ],
+    roles: [
+      "Frontend Development",
+      "Backend Development",
+      "Database Architecture",
+      "REST API Integration",
+      "Inventory Management Module"
+    ],
+    techStack: ["React", "Node.js", "Express.js", "REST APIs", "Tailwind CSS"],
+    githubUrl: "https://github.com/nivetha-os",
+    liveUrl: "#contact"
   }
 ];
 
