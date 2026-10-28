@@ -63,12 +63,12 @@ export default function Hero({ onOpenResume }) {
                 <span>{personalInfo.status}</span>
               </div>
               <div className="hero-stat-badge">
-                <Briefcase className="w-3.5 h-3.5 text-[var(--accent-color)]" />
+                <Briefcase className="w-3.5 h-3.5 text-[var(--accent-color)] flex-shrink-0" />
                 <span>{personalInfo.experienceYears} Hands-on</span>
               </div>
-              <div className="hero-stat-badge">
-                <MapPin className="w-3.5 h-3.5 text-[var(--accent-color)]" />
-                <span>{personalInfo.location}</span>
+              <div className="hero-stat-badge" title={personalInfo.location}>
+                <MapPin className="w-3.5 h-3.5 text-[var(--accent-color)] flex-shrink-0" />
+                <span>Chennai, India</span>
               </div>
             </div>
 
