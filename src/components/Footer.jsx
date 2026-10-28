@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowUp, Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
+import { ArrowUp, Mail, Phone, MapPin, Sparkles } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './Icons'
 import { personalInfo } from '../data/portfolioData'
 
@@ -11,26 +11,29 @@ export default function Footer() {
   const navLinks = [
     { name: 'Home', href: '#hero' },
     { name: 'About', href: '#about' },
-    { name: 'Stack', href: '#skills' },
+    { name: 'Skills & Stack', href: '#skills' },
     { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '#projects' },
+    { name: 'My Portfolio', href: '#projects' },
     { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Get In Touch', href: '#contact' }
   ]
 
   return (
-    <footer className="bg-[var(--bg-primary)] text-[var(--text-primary)] pt-16 pb-12 max-[992px]:pb-28 border-t border-[var(--border-color)] relative z-10 overflow-hidden">
+    <footer className="tunis-footer">
+      {/* Top glowing cyan line */}
+      <div className="tunis-footer-glow" />
+
       <div className="tunis-container">
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-[var(--border-color)] items-start">
-          {/* Column 1: Brand & Bio (Span 5 on large screens) */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-[var(--accent-color)] flex items-center justify-center font-black text-[#0B0F17] text-lg shadow-lg flex-shrink-0">
+        {/* Main 3-Column Footer Grid */}
+        <div className="tunis-footer-grid">
+          {/* Column 1: Brand & Profile Info */}
+          <div className="tunis-footer-col space-y-4">
+            <div className="flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-2xl bg-[var(--accent-color)] flex items-center justify-center font-black text-[#0B0F17] text-lg shadow-[0_0_15px_rgba(0,245,212,0.35)] flex-shrink-0">
                 SN
               </div>
               <div>
-                <span className="font-extrabold text-xl text-white block tracking-tight">
+                <span className="font-extrabold text-xl text-white block tracking-tight leading-tight">
                   {personalInfo.name}
                 </span>
                 <span className="text-xs font-semibold text-[var(--accent-color)] tracking-wide">
@@ -40,60 +43,72 @@ export default function Footer() {
             </div>
 
             <p className="text-[var(--text-secondary)] text-sm max-w-sm leading-relaxed">
-              Building responsive, API-driven web applications, admin dashboards, and scalable database architectures using React, Node.js, Express, MongoDB, and MySQL.
+              Passionate MERN Stack Developer crafting production-grade web applications, responsive frontend experiences, and reliable RESTful backend systems.
             </p>
 
-            <div className="flex items-center gap-2 text-xs text-[var(--text-muted)] pt-1">
-              <MapPin className="w-3.5 h-3.5 text-[var(--accent-color)] flex-shrink-0" />
-              <span>{personalInfo.location}</span>
+            {/* Status & Location badges */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 pt-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Available for Opportunities</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+                <MapPin className="w-3.5 h-3.5 text-[var(--accent-color)] flex-shrink-0" />
+                <span>{personalInfo.location}</span>
+              </div>
             </div>
           </div>
 
-          {/* Column 2: Navigation Links (Span 4 on large screens) */}
-          <div className="lg:col-span-4 space-y-4">
-            <h4 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest border-b border-[var(--border-color)] pb-2.5">
+          {/* Column 2: Quick Navigation */}
+          <div className="tunis-footer-col">
+            <h4 className="tunis-footer-title">
               Quick Navigation
             </h4>
-            <div className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
+            <div className="tunis-footer-links-grid">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-[var(--text-secondary)] hover:text-[var(--accent-color)] transition-colors flex items-center gap-1.5 group"
+                  className="tunis-footer-link group"
                 >
-                  <span className="text-xs text-[var(--accent-color)] opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-xs text-[var(--accent-color)] transition-transform group-hover:translate-x-1">
                     →
                   </span>
-                  <span className="group-hover:translate-x-0.5 transition-transform">{link.name}</span>
+                  <span>{link.name}</span>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Column 3: Contact & Socials (Span 3 on large screens) */}
-          <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest border-b border-[var(--border-color)] pb-2.5">
+          {/* Column 3: Contact & Direct Connect */}
+          <div className="tunis-footer-col">
+            <h4 className="tunis-footer-title">
               Connect With Me
             </h4>
 
-            <div className="space-y-2.5 text-xs text-[var(--text-secondary)]">
+            {/* Clickable contact chips */}
+            <div>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="flex items-center gap-2 hover:text-[var(--accent-color)] transition-colors"
+                className="tunis-footer-contact-item"
+                title="Send Email"
               >
                 <Mail className="w-4 h-4 text-[var(--accent-color)] flex-shrink-0" />
                 <span className="truncate">{personalInfo.email}</span>
               </a>
+
               <a
                 href={`tel:${personalInfo.phone.replace(/\s+/g, '')}`}
-                className="flex items-center gap-2 hover:text-[var(--accent-color)] transition-colors"
+                className="tunis-footer-contact-item"
+                title="Call Phone"
               >
                 <Phone className="w-4 h-4 text-[var(--accent-color)] flex-shrink-0" />
                 <span>{personalInfo.phone}</span>
               </a>
             </div>
 
-            <div className="flex items-center gap-2.5 pt-1.5">
+            {/* Social Icons with glowing hover effect */}
+            <div className="flex items-center gap-3 pt-2">
               <a
                 href={personalInfo.github}
                 target="_blank"
@@ -118,7 +133,7 @@ export default function Footer() {
                 href={`mailto:${personalInfo.email}`}
                 aria-label="Send Direct Email"
                 className="social-icon-btn"
-                title="Email Me"
+                title="Email Me Directly"
               >
                 <Mail className="w-4 h-4" />
               </a>
@@ -127,18 +142,18 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar: Copyright & Back to Top */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-muted)] w-full">
-          <p className="text-center sm:text-left order-2 sm:order-1">
-            © {new Date().getFullYear()} <span className="text-[var(--text-primary)] font-semibold">{personalInfo.name}</span>. All rights reserved.
+        <div className="tunis-footer-bottom">
+          <p className="text-xs text-[var(--text-muted)] tracking-wide">
+            © {new Date().getFullYear()} <span className="text-white font-bold">{personalInfo.name}</span>. All rights reserved. • Built with React & Node.js
           </p>
 
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all cursor-pointer shadow-sm group order-1 sm:order-2 self-center sm:self-auto"
+            className="tunis-back-to-top group"
             aria-label="Scroll back to top"
           >
-            <span className="font-bold text-xs tracking-wide">Back to Top</span>
-            <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform text-[var(--accent-color)]" />
+            <span>Back to Top</span>
+            <ArrowUp className="w-4 h-4 text-[var(--accent-color)] transition-transform group-hover:-translate-y-1" />
           </button>
         </div>
       </div>

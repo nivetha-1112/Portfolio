@@ -80,10 +80,24 @@ export default function Projects({ onSelectProject }) {
                     <span className="project-category-tag shadow-md">
                       {project.category}
                     </span>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-black/75 backdrop-blur-md text-emerald-400 border border-emerald-500/30 flex items-center gap-1 shadow-md">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      {project.badge}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-black/75 backdrop-blur-md text-emerald-400 border border-emerald-500/30 flex items-center gap-1 shadow-md">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        {project.badge}
+                      </span>
+                      {project.liveUrl && project.liveUrl !== '#contact' && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="pointer-events-auto w-7 h-7 rounded-full bg-black/80 hover:bg-[var(--accent-color)] text-gray-300 hover:text-[#0B0F17] flex items-center justify-center transition-all shadow-md"
+                          title="Open live website directly"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -112,7 +126,7 @@ export default function Projects({ onSelectProject }) {
                 {/* Bottom Row */}
                 <div className="flex items-center justify-between pt-3 border-t border-[var(--border-color)]">
                   <span className="text-xs font-bold text-[var(--accent-color)] tracking-wide uppercase flex items-center gap-1">
-                    VIEW DETAILS
+                    VIEW DETAILS & LIVE LINK
                   </span>
                   <div className="project-arrow-btn">
                     <ArrowRight className="w-4 h-4" />

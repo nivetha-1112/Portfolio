@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { X, ExternalLink, CheckCircle2, Layers } from 'lucide-react'
+import { X, ExternalLink, CheckCircle2, Globe, ArrowRight } from 'lucide-react'
 import { GithubIcon } from './Icons'
 
 export default function ProjectModal({ project, onClose }) {
@@ -18,18 +18,25 @@ export default function ProjectModal({ project, onClose }) {
 
   if (!project) return null
 
+  const isLive = project.liveUrl && project.liveUrl !== '#contact'
+
+  const handleContactClick = () => {
+    onClose()
+    const contactEl = document.getElementById('contact')
+    if (contactEl) {
+      contactEl.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md p-3 sm:p-6 flex items-start sm:items-center justify-center animate-in fade-in duration-200"
-      onClick={onClose}
-    >
+    <div className="tunis-modal-backdrop animate-in fade-in duration-200" onClick={onClose}>
       <div
-        className="relative w-full max-w-3xl max-h-[85vh] my-auto bg-[#111827] text-white rounded-2xl sm:rounded-3xl shadow-2xl border border-white/10 flex flex-col overflow-hidden"
+        className="tunis-modal-dialog"
         onClick={(e) => e.stopPropagation()}
         spellCheck="false"
       >
         {/* Pinned Top Header */}
-        <div className="flex-shrink-0 px-5 sm:px-7 py-4 bg-[#0E1524] border-b border-white/10 flex items-start justify-between gap-4">
+        <div className="tunis-modal-header">
           <div className="min-w-0 pr-2">
             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
               <span className="text-xs font-bold px-3 py-0.5 rounded-full bg-[var(--accent-color)] text-[#0B0F17]">
@@ -45,28 +52,118 @@ export default function ProjectModal({ project, onClose }) {
             </h3>
           </div>
 
-          {/* Close Button Pinned to Header */}
-          <button
-            onClick={onClose}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#1A2333] border border-white/15 text-gray-300 hover:text-[#0B0F17] hover:bg-[var(--accent-color)] hover:border-[var(--accent-color)] transition-all flex items-center justify-center cursor-pointer flex-shrink-0 shadow-md"
-            aria-label="Close modal"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {/* Quick Header Live Link */}
+            {isLive && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-[var(--accent-color)] text-[#0B0F17] hover:brightness-110 transition-all shadow-sm"
+                title="Visit Live Website"
+              >
+                <span>Live Site</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
+
+            {/* Close Button Pinned to Header */}
+            <button
+              onClick={onClose}
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#1A2333] border border-white/15 text-gray-300 hover:text-[#0B0F17] hover:bg-[var(--accent-color)] hover:border-[var(--accent-color)] transition-all flex items-center justify-center cursor-pointer shadow-md"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Scrollable Modal Body */}
-        <div className="flex-1 min-h-0 overflow-y-auto px-5 sm:px-7 py-5 space-y-5">
-          {/* Project Image Banner */}
+        <div className="tunis-modal-body space-y-5">
+          {/* Clickable Project Image Banner -> Goes to Live Link */}
           {project.image && (
-            <div className="w-full max-h-[220px] sm:max-h-[260px] rounded-xl overflow-hidden border border-white/10 bg-[#0B0F17] shadow-lg flex-shrink-0">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover object-top block"
-              />
-            </div>
+            isLive ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tunis-modal-img-wrap group relative block cursor-pointer"
+                title={`Click to open live site: ${project.liveUrl}`}
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="tunis-modal-img group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
+                  <span className="px-5 py-2.5 rounded-full bg-[var(--accent-color)] text-[#0B0F17] font-bold text-xs shadow-xl flex items-center gap-2">
+                    <span>Visit Live Website</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </span>
+                </div>
+              </a>
+            ) : (
+              <div
+                onClick={handleContactClick}
+                className="tunis-modal-img-wrap group relative block cursor-pointer"
+                title="Inquire / Request Demo"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="tunis-modal-img group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
+                  <span className="px-5 py-2.5 rounded-full bg-[var(--accent-color)] text-[#0B0F17] font-bold text-xs shadow-xl flex items-center gap-2">
+                    <span>Inquire for Live Demo</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </div>
+              </div>
+            )
           )}
+
+          {/* Project Direct Link Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 rounded-xl bg-[#0B0F17] border border-white/10 gap-3">
+            <div className="flex items-center gap-2 text-xs min-w-0">
+              <Globe className="w-4 h-4 text-[var(--accent-color)] flex-shrink-0" />
+              <span className="text-gray-400 font-semibold flex-shrink-0">Project Link:</span>
+              {isLive ? (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--accent-color)] font-mono hover:underline truncate font-medium"
+                >
+                  {project.liveUrl}
+                </a>
+              ) : (
+                <span className="text-gray-400 font-mono text-[11px]">
+                  Active Office Development (Inquire for demo)
+                </span>
+              )}
+            </div>
+
+            {isLive ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold bg-[var(--accent-color)] text-[#0B0F17] hover:brightness-110 transition-all shadow-sm"
+              >
+                <span>Open Project Link</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            ) : (
+              <button
+                onClick={handleContactClick}
+                className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold bg-[var(--accent-color)] text-[#0B0F17] hover:brightness-110 transition-all shadow-sm cursor-pointer"
+              >
+                <span>Request Demo</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
 
           {/* System Overview */}
           <div className="space-y-1.5">
@@ -113,25 +210,34 @@ export default function ProjectModal({ project, onClose }) {
         </div>
 
         {/* Pinned Modal Actions Footer */}
-        <div className="flex-shrink-0 px-5 sm:px-7 py-3.5 bg-[#0E1524] border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
+        <div className="tunis-modal-footer">
           <div className="flex flex-wrap items-center gap-3">
-            {project.liveUrl && project.liveUrl !== '#contact' && (
+            {isLive ? (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full text-xs font-bold bg-[var(--accent-color)] text-[#0B0F17] hover:brightness-110 transition-all shadow-md"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-[var(--accent-color)] text-[#0B0F17] hover:brightness-110 transition-all shadow-md hover:shadow-[0_0_15px_rgba(0,245,212,0.4)]"
               >
-                <span>Live Website</span>
+                <span>Visit Live Website</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
+            ) : (
+              <button
+                onClick={handleContactClick}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-[var(--accent-color)] text-[#0B0F17] hover:brightness-110 transition-all shadow-md cursor-pointer"
+              >
+                <span>Contact for Live Demo</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             )}
+
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full text-xs font-semibold bg-[#162032] text-gray-200 hover:text-white border border-white/10 hover:border-[var(--accent-color)] transition-all"
+                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-xs font-semibold bg-[#162032] text-gray-200 hover:text-white border border-white/10 hover:border-[var(--accent-color)] transition-all"
               >
                 <GithubIcon className="w-3.5 h-3.5" />
                 <span>Source Code</span>

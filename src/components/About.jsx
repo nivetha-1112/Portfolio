@@ -33,7 +33,7 @@ export default function About({ onOpenResume }) {
     { label: 'Last Name', value: personalInfo.lastName, icon: User },
     { label: 'Age', value: personalInfo.age || '21 Years', icon: Award },
     { label: 'Nationality', value: personalInfo.nationality || 'Indian', icon: Globe },
-    { label: 'Freelance', value: personalInfo.freelance || 'Available', icon: ShieldCheck, highlight: true },
+  
     { label: 'Address', value: personalInfo.location, icon: MapPin },
     { label: 'Phone', value: personalInfo.phone, icon: Phone },
     { label: 'Email', value: personalInfo.email, icon: Mail },
@@ -90,19 +90,7 @@ export default function About({ onOpenResume }) {
               </div>
             </div>
 
-            {/* Card Footer: Download CV Button */}
-            <div className="about-card-footer">
-              <button
-                onClick={onOpenResume}
-                className="btn-tunis"
-                aria-label="Download CV"
-              >
-                <span>DOWNLOAD CV</span>
-                <div className="btn-icon-circle">
-                  <Download className="w-4 h-4" />
-                </div>
-              </button>
-            </div>
+           
           </div>
 
           {/* Right Column: Tunis Stat Boxes */}

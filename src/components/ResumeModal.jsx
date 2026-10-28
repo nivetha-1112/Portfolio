@@ -107,17 +107,14 @@ ${certificationsData
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md p-3 sm:p-6 flex items-center justify-center animate-in fade-in duration-200"
-      onClick={onClose}
-    >
+    <div className="tunis-modal-backdrop animate-in fade-in duration-200" onClick={onClose}>
       <div
-        className="relative w-full max-w-4xl max-h-[88vh] my-auto bg-[#111827] text-white rounded-2xl sm:rounded-3xl shadow-2xl border border-white/10 overflow-hidden flex flex-col"
+        className="tunis-modal-dialog large"
         onClick={(e) => e.stopPropagation()}
         spellCheck="false"
       >
         {/* Top Control Bar (Hidden when printing) */}
-        <div className="print:hidden flex-shrink-0 flex items-center justify-between px-4 sm:px-6 py-3.5 bg-[#0E1524] border-b border-white/10 flex-wrap gap-3">
+        <div className="tunis-modal-header print:hidden flex-wrap gap-3">
           <div className="flex items-center gap-2">
             <FileText className="w-5 h-5 text-[var(--accent-color)]" />
             <span className="font-extrabold text-white text-sm sm:text-base">
@@ -157,7 +154,7 @@ ${certificationsData
         </div>
 
         {/* Scrollable Printable Document Container */}
-        <div className="flex-1 min-h-0 p-6 sm:p-10 overflow-y-auto space-y-8 text-gray-200 bg-[#111827] print:bg-white print:text-black print:p-0 print:overflow-visible">
+        <div className="tunis-modal-body p-6 sm:p-10 space-y-8 text-gray-200 bg-[#111827] print:bg-white print:text-black print:p-0 print:overflow-visible">
           {/* Header */}
           <div className="border-b-2 border-[var(--accent-color)] pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>

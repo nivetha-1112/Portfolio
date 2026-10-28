@@ -88,16 +88,17 @@ export default function Hero({ onOpenResume }) {
                 </div>
               </button>
 
-              <button
-                onClick={onOpenResume}
+              <a
+                href="/Nivetha_S_Resume.pdf"
+                download="Nivetha_S_Resume.pdf"
                 className="btn-tunis"
-                aria-label="View and Download CV"
+                aria-label="Download Nivetha's CV"
               >
                 <span>DOWNLOAD CV</span>
                 <div className="btn-icon-circle">
                   <Download className="w-4 h-4" />
                 </div>
-              </button>
+              </a>
             </div>
 
             {/* Social Links */}
