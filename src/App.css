@@ -279,7 +279,7 @@
 /* ==================== Tunis About Grid ==================== */
 .about-tunis-grid {
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 1fr 340px;
   gap: 2.25rem;
   align-items: stretch;
   position: relative;
@@ -407,54 +407,59 @@
 .about-stats-grid {
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
+  gap: 0.85rem;
   justify-content: space-between;
+  width: 340px;
+  max-width: 100%;
 }
 
 .about-stat-box {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 1.25rem;
-  padding: 1.35rem 1.65rem;
+  border-radius: 1.15rem;
+  padding: 0.85rem 1.25rem;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.15rem;
+  width: 100%;
   box-shadow: var(--card-shadow);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .about-stat-box:hover {
   border-color: var(--border-highlight);
-  transform: translateY(-3px);
-  box-shadow: 0 16px 35px -8px rgba(0, 0, 0, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px -6px rgba(0, 0, 0, 0.5);
 }
 
 .about-stat-number {
-  font-size: clamp(2rem, 2.5vw, 2.6rem);
+  font-size: 1.95rem;
   font-weight: 900;
   color: var(--accent-color);
   line-height: 1;
-  min-width: 85px;
+  min-width: 68px;
+  flex-shrink: 0;
 }
 
 .about-stat-text {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  font-size: 0.82rem;
+  gap: 0.15rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: var(--text-secondary);
-  padding-left: 1.5rem;
+  padding-left: 1.15rem;
   position: relative;
+  line-height: 1.35;
 }
 
 .about-stat-text::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 8px;
-  width: 16px;
+  top: 5px;
+  width: 12px;
   height: 2px;
   background-color: var(--accent-color);
   border-radius: 2px;
@@ -463,6 +468,7 @@
 .about-stat-text strong {
   color: var(--text-primary);
   font-weight: 800;
+  font-size: 0.8rem;
 }
 
 .about-bottom-grid {
@@ -869,12 +875,10 @@
 }
 
 .project-card-item {
-  background-color: var(--bg-card);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--border-color);
+  background-color: #111622;
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 1.25rem;
-  padding: 1.6rem;
+  padding: 1.5rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -892,11 +896,11 @@
 
 .project-card-img-wrapper {
   overflow: hidden;
-  border-radius: 0.85rem;
+  border-radius: 1rem;
   margin-bottom: 1.25rem;
-  height: 220px;
-  border: 1px solid var(--border-color);
-  background: var(--bg-tertiary);
+  height: 210px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
   position: relative;
 }
 
@@ -906,11 +910,12 @@
   object-fit: cover;
   object-position: top center;
   display: block;
+  border-radius: 0.85rem;
   transition: transform 0.4s ease;
 }
 
 .project-card-item:hover .project-card-img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .project-category-tag {
@@ -1478,46 +1483,58 @@
 }
 
 /* ==================== Tunis Rock-Solid Modal System ==================== */
+body.modal-open {
+  overflow: hidden;
+}
+
 .tunis-modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 99999;
   background-color: rgba(3, 7, 18, 0.88);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  overflow-y: auto;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.75rem 1rem;
+  padding: 1.5rem 1rem;
 }
 
 .tunis-modal-dialog {
   position: relative;
   width: 100%;
-  max-width: 820px;
-  max-height: calc(100vh - 3.5rem);
+  max-width: 780px;
+  max-height: min(90vh, 760px);
   height: auto;
-  background-color: #111827;
+  background-color: #111622;
   color: #ffffff;
   border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.95);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  margin: auto;
+  margin: 0;
+  animation: modalScaleIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.tunis-modal-dialog.large {
-  max-width: 900px;
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .tunis-modal-header {
   flex-shrink: 0;
-  padding: 1.25rem 1.75rem;
-  background-color: #0e1524;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 1.75rem 1.25rem;
+  background-color: #111622;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1528,7 +1545,7 @@
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  padding: 1.5rem 1.75rem;
+  padding: 1.5rem 1.75rem 2rem;
   overscroll-behavior: contain;
 }
 

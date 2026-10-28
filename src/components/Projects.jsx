@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import {
   ExternalLink,
   ArrowRight,
-  Sparkles,
+  Zap,
   Layers,
-  CheckCircle2
+  Sparkles
 } from 'lucide-react'
-import { GithubIcon } from './Icons'
 import { projectsData } from '../data/portfolioData'
 
 export default function Projects({ onSelectProject }) {
@@ -18,17 +17,6 @@ export default function Projects({ onSelectProject }) {
     selectedFilter === 'All'
       ? projectsData
       : projectsData.filter((p) => p.category === selectedFilter)
-
-  // Gradient themes for project preview banners
-  const getBannerGradient = (index) => {
-    const gradients = [
-      'from-emerald-950/80 via-slate-900 to-teal-950/90',
-      'from-indigo-950/80 via-slate-900 to-blue-950/90',
-      'from-cyan-950/80 via-slate-900 to-sky-950/90',
-      'from-teal-950/80 via-slate-900 to-emerald-950/90'
-    ]
-    return gradients[index % gradients.length]
-  }
 
   return (
     <section id="projects" className="tunis-section relative">
@@ -58,77 +46,83 @@ export default function Projects({ onSelectProject }) {
           ))}
         </div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid: Tunis Symmetrical 2x2 Layout */}
         <div className="projects-grid">
-          {filteredProjects.map((project, idx) => (
+          {filteredProjects.map((project) => (
             <div
               key={project.id}
               onClick={() => onSelectProject(project)}
               className="project-card-item group"
             >
               <div>
-                {/* Visual Preview Header Image */}
-                <div className="project-card-img-wrapper relative overflow-hidden bg-[var(--bg-secondary)]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="project-card-img w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
-                    <span className="project-category-tag shadow-md">
-                      {project.category}
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-black/75 backdrop-blur-md text-emerald-400 border border-emerald-500/30 flex items-center gap-1 shadow-md">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        {project.badge}
-                      </span>
-                      {project.liveUrl && project.liveUrl !== '#contact' && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="pointer-events-auto w-7 h-7 rounded-full bg-black/80 hover:bg-[var(--accent-color)] text-gray-300 hover:text-[#0B0F17] flex items-center justify-center transition-all shadow-md"
-                          title="Open live website directly"
-                        >
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      )}
-                    </div>
+                {/* Top Badge Row */}
+                <div className="flex items-center justify-between gap-2 mb-3.5">
+                  <span className="px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider text-[var(--accent-color)] border border-[var(--accent-color)]/30 bg-[var(--accent-color)]/10">
+                    {project.company || 'OCEAN SOFTWARES'}
+                  </span>
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>{project.badge || 'Live System'}</span>
                   </div>
                 </div>
 
+                {/* Visual Preview Header Image Container */}
+                <div className="project-card-img-wrapper relative overflow-hidden bg-white/95 rounded-xl border border-white/10 mb-4 p-1">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="project-card-img w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 rounded-lg"
+                    loading="lazy"
+                  />
+                  {project.liveUrl && project.liveUrl !== '#contact' && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-black/80 hover:bg-[var(--accent-color)] text-gray-200 hover:text-[#0B0F17] flex items-center justify-center transition-all shadow-md z-10"
+                      title="Open Live Website Directly"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+
                 {/* Title & Description */}
-                <h4 className="project-card-title group-hover:text-[var(--accent-color)] transition-colors">
-                  {project.title}
+                <h4 className="text-xl font-black text-white tracking-tight group-hover:text-[var(--accent-color)] transition-colors mb-2">
+                  {project.shortTitle || project.title}
                 </h4>
-                <p className="project-card-desc">
+                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">
                   {project.shortDescription}
                 </p>
+
+                {/* Subtag Pill with Lightning Bolt */}
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#162032] border border-white/10 text-xs font-bold text-gray-200 mb-4">
+                  <Zap className="w-3.5 h-3.5 text-[var(--accent-color)]" />
+                  <span>{project.subTag || project.shortTitle}</span>
+                </div>
               </div>
 
               <div>
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
+                {/* Tech Tags with Bullets */}
+                <div className="flex flex-wrap gap-2 mb-5">
                   {project.techStack.map((tech, tIdx) => (
                     <span
                       key={tIdx}
-                      className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border-color)]"
+                      className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-[#0e1524] text-gray-300 border border-white/5 flex items-center gap-1.5"
                     >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-color)]" />
                       {tech}
                     </span>
                   ))}
                 </div>
 
                 {/* Bottom Row */}
-                <div className="flex items-center justify-between pt-3 border-t border-[var(--border-color)]">
-                  <span className="text-xs font-bold text-[var(--accent-color)] tracking-wide uppercase flex items-center gap-1">
-                    VIEW DETAILS & LIVE LINK
+                <div className="flex items-center justify-between pt-3.5 border-t border-white/10">
+                  <span className="text-xs font-black uppercase tracking-wider text-[var(--accent-color)] group-hover:brightness-110 transition-all">
+                    View Details & Panels
                   </span>
-                  <div className="project-arrow-btn">
+                  <div className="w-9 h-9 rounded-full bg-[#162032] border border-white/10 text-gray-300 flex items-center justify-center group-hover:bg-[var(--accent-color)] group-hover:text-[#0B0F17] group-hover:border-[var(--accent-color)] group-hover:translate-x-0.5 transition-all shadow-sm">
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>

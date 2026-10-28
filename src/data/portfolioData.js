@@ -222,70 +222,110 @@ export const projectsData = [
   {
     id: "serviq-platform",
     title: "Serviq - Restaurant Management Platform",
+    shortTitle: "Serviq Platform",
+    company: "OCEAN SOFTWARES",
+    subTag: "Serviq Admin & POS",
     category: "Admin Panels",
     badge: "Active Development",
     image: "/serviq.png",
     shortDescription: "Restaurant management platform where I own the admin panel UI, inventory management module, and complete frontend-backend API integration.",
-    fullDescription: "An end-to-end restaurant management suite designed for managing restaurant operations, records, and stock. Developed with responsive layouts, reusable components, and secure CRUD operations.",
+    fullDescription: "A comprehensive enterprise management platform designed to digitize and streamline restaurant operations, inventory tracking, order management, and administrative records through secure CRUD operations.",
     features: [
       "Developed the complete admin panel UI for managing restaurant operations and records",
       "Built the inventory management module to add, update, track, and manage stock items with full CRUD operations",
       "Integrated the entire admin panel with backend REST APIs, complete with form validation and error handling",
       "Responsive layouts and reusable components built with React.js"
     ],
-    techStack: ["React.js", "Node.js", "Express.js", "REST APIs", "Tailwind CSS"],
+    roles: [
+      "Frontend Development",
+      "Backend Development",
+      "Database Architecture",
+      "REST API Integration",
+      "Inventory Management Module"
+    ],
+    techStack: ["React", "Node.js", "Express.js", "REST APIs", "Tailwind CSS"],
     githubUrl: "https://github.com/nivetha-os",
     liveUrl: "#contact"
   },
   {
     id: "theatre-booking",
     title: "Private Theatre Booking Website & Admin Panel",
+    shortTitle: "The Tiny Theatre",
+    company: "OCEAN SOFTWARES",
+    subTag: "Theatre Booking System",
     category: "Full Stack",
-    badge: "Live in Production",
+    badge: "Live System",
     image: "/tinytheatre.png",
     shortDescription: "Customer-facing website and comprehensive admin panel for a private theatre booking business, live in production.",
-    fullDescription: "A production booking platform featuring customer-facing slot reservation and a dedicated admin portal to manage bookings, slots, and website content.",
+    fullDescription: "A production booking platform featuring customer-facing slot reservation and a dedicated administrative portal to manage bookings, slot availability, pricing, and dynamic website content.",
     features: [
       "Built responsive pages for theatre details, available slots, and booking enquiries",
       "Created an admin panel to manage bookings, slots, and website content with full CRUD operations",
       "Integrated frontend and backend through REST APIs with form validation and error handling",
       "Live in production and actively serving booking customers"
     ],
-    techStack: ["React.js", "Node.js", "Express.js", "SQL", "Bootstrap", "REST APIs"],
+    roles: [
+      "Frontend Development",
+      "Admin Panel Engineering",
+      "Database Modeling",
+      "REST API Integration",
+      "Slot Booking Workflow"
+    ],
+    techStack: ["React", "Node.js", "Express.js", "SQL", "Bootstrap", "REST APIs"],
     githubUrl: "https://github.com/nivetha-os",
     liveUrl: "https://thetinytheatre.in"
   },
   {
     id: "charity-website",
     title: "Charity Website with Admin Panel",
+    shortTitle: "Anbu Suzhalagu Charity",
+    company: "OCEAN SOFTWARES",
+    subTag: "Charity & Donor Portal",
     category: "Full Stack",
-    badge: "Live in Production",
+    badge: "Live System",
     image: "/charity.png",
     shortDescription: "Public charity website live in production, featuring a separate administrative panel for managing content and donor initiatives.",
-    fullDescription: "A full-featured public charity platform coupled with an administrative backend for managing content updates and dynamic community records.",
+    fullDescription: "A full-featured public charity platform coupled with an administrative backend for managing content updates, community initiatives, dynamic records, and donor outreach.",
     features: [
       "Developed a public charity website along with a separate admin panel for managing website content",
       "Integrated APIs for administrative operations and for displaying dynamic data on the public portal",
       "Tested API endpoints with Postman and maintained code versioning with Git and GitHub",
       "Live in production"
     ],
-    techStack: ["React.js", "Node.js", "Express.js", "SQL", "REST APIs"],
+    roles: [
+      "Frontend Development",
+      "Admin Dashboard",
+      "RESTful API Integration",
+      "Database Architecture",
+      "Production Deployment"
+    ],
+    techStack: ["React", "Node.js", "Express.js", "SQL", "REST APIs"],
     githubUrl: "https://github.com/nivetha-os",
     liveUrl: "https://anbusuzhulagu.org"
   },
   {
     id: "meadows-landsale",
     title: "Meadows - Land Sale Website",
+    shortTitle: "Meadows Asset Tree",
+    company: "OCEAN SOFTWARES",
+    subTag: "Real Estate Campaign",
     category: "Full Stack",
-    badge: "Live in Production",
+    badge: "Live System",
     image: "/meadows.png",
     shortDescription: "Property listing and sales website with responsive design and automated PHP email enquiry delivery.",
-    fullDescription: "A commercial real-estate campaign portal featuring property listing showcases and an automated lead capture enquiry form.",
+    fullDescription: "A commercial real-estate campaign portal featuring property listing showcases, plot layout galleries, and an automated lead capture enquiry form delivering customer leads directly to management.",
     features: [
       "Responsive, user-friendly property listing pages for customer browsing",
       "Integrated enquiry form so customers can view available plots and contact business representatives",
       "Implemented server-side email integration in PHP ensuring leads reach the business owners directly",
       "Live in production"
+    ],
+    roles: [
+      "Frontend UI/UX",
+      "Responsive Layouts",
+      "Server-side PHP",
+      "Email Automation",
+      "Lead Capture Pipeline"
     ],
     techStack: ["HTML5", "CSS3", "PHP", "Email Integration"],
     githubUrl: "https://github.com/nivetha-os",
