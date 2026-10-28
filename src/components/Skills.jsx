@@ -57,16 +57,12 @@ export default function Skills() {
 
       <div className="tunis-container">
         {/* Category Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        <div className="tunis-filter-bar">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
-                selectedCategory === cat
-                  ? 'bg-[var(--accent-color)] text-[#0B0F17] shadow-lg shadow-[var(--accent-glow)]'
-                  : 'bg-[var(--bg-card)] text-[var(--text-secondary)] border border-[var(--border-color)] hover:border-[var(--accent-color)] hover:text-white'
-              }`}
+              className={`tunis-filter-btn ${selectedCategory === cat ? 'active' : ''}`}
             >
               {cat}
             </button>

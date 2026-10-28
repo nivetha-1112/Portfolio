@@ -30,16 +30,12 @@ export default function Projects({ onSelectProject }) {
 
       <div className="tunis-container">
         {/* Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        <div className="tunis-filter-bar">
           {filterTabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setSelectedFilter(tab)}
-              className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
-                selectedFilter === tab
-                  ? 'bg-[var(--accent-color)] text-[#0B0F17] shadow-lg shadow-[var(--accent-glow)]'
-                  : 'bg-[var(--bg-card)] text-[var(--text-secondary)] border border-[var(--border-color)] hover:border-[var(--accent-color)] hover:text-white'
-              }`}
+              className={`tunis-filter-btn ${selectedFilter === tab ? 'active' : ''}`}
             >
               {tab}
             </button>

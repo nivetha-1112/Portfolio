@@ -181,14 +181,7 @@ export default function Footer() {
             © {new Date().getFullYear()} <span className="text-white font-bold">{personalInfo.name}</span>. All rights reserved. • Built with React & Node.js
           </p>
 
-          <button
-            onClick={scrollToTop}
-            className="tunis-back-to-top group"
-            aria-label="Scroll back to top"
-          >
-            <span>Back to Top</span>
-            <ArrowUp className="w-4 h-4 text-[var(--accent-color)] transition-transform group-hover:-translate-y-1" />
-          </button>
+         
         </div>
       </div>
     </footer>
