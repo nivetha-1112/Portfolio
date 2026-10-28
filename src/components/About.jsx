@@ -1,111 +1,193 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
+  Download,
   ShieldCheck,
   Server,
   Layout,
   Database,
-  CheckCircle2,
-  Code2,
+  Terminal as TerminalIcon,
+  Copy,
+  Check,
+  User,
   MapPin,
-  Calendar,
-  Layers
+  Mail,
+  Phone,
+  Globe,
+  Award
 } from 'lucide-react'
 import { personalInfo, aboutData } from '../data/portfolioData'
 
-export default function About() {
+export default function About({ onOpenResume }) {
+  const [activeTab, setActiveTab] = useState('profile.js')
+  const [copied, setCopied] = useState(false)
+
   const iconMap = {
-    ShieldCheck: <ShieldCheck className="w-6 h-6 text-[#81D8D0]" />,
-    Server: <Server className="w-6 h-6 text-[#81D8D0]" />,
-    Layout: <Layout className="w-6 h-6 text-[#81D8D0]" />,
-    Database: <Database className="w-6 h-6 text-[#81D8D0]" />
+    ShieldCheck,
+    Server,
+    Layout,
+    Database
   }
 
-  const focusPoints = [
-    { label: 'Role', value: 'MERN Stack Developer', sub: 'Full Stack Developer', icon: <Code2 className="w-5 h-5 text-[#81D8D0]" /> },
-    { label: 'Experience', value: '1 Year', sub: 'MERN & Full Stack', icon: <Calendar className="w-5 h-5 text-[#81D8D0]" /> },
-    { label: 'Specialization', value: 'Admin Panels & Web Apps', sub: 'Responsive & API-Driven', icon: <Layers className="w-5 h-5 text-[#81D8D0]" /> },
-    { label: 'Location', value: 'Chennai, India', sub: 'Tamil Nadu', icon: <MapPin className="w-5 h-5 text-[#81D8D0]" /> }
+  const personalDetails = [
+    { label: 'First Name', value: personalInfo.firstName, icon: User },
+    { label: 'Last Name', value: personalInfo.lastName, icon: User },
+    { label: 'Age', value: personalInfo.age || '21 Years', icon: Award },
+    { label: 'Nationality', value: personalInfo.nationality || 'Indian', icon: Globe },
+    { label: 'Freelance', value: personalInfo.freelance || 'Available', icon: ShieldCheck, highlight: true },
+    { label: 'Address', value: personalInfo.location, icon: MapPin },
+    { label: 'Phone', value: personalInfo.phone, icon: Phone },
+    { label: 'Email', value: personalInfo.email, icon: Mail },
+    { label: 'Languages', value: personalInfo.languages || 'English, Tamil', icon: Globe }
   ]
 
+  const handleCopyCode = () => {
+    const code = aboutData.terminalFiles[activeTab]
+    navigator.clipboard.writeText(code)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   return (
-    <section id="about" className="py-24 bg-[#0E1524] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-gray-200 bg-[#162032] border border-[#81D8D0]/40 mb-3">
-            <Code2 className="w-3.5 h-3.5 text-[#81D8D0]" />
-            About S. Nivetha
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            MERN Stack Developer | Full Stack Developer
-          </h2>
-          <div className="w-16 h-1 bg-[#81D8D0] mx-auto mt-4 rounded-full shadow-[0_0_8px_#81D8D0]" />
-        </div>
+    <section id="about" className="tunis-section relative">
+      {/* Tunis Section Title with huge faint watermark */}
+      <div className="tunis-section-title-wrap">
+        <h2 className="tunis-watermark">RESUME</h2>
+        <h3 className="tunis-title-foreground">
+          ABOUT <span>ME</span>
+        </h3>
+      </div>
 
-        {/* Story & Focus Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
-          <div className="lg:col-span-7 space-y-5">
-            <h3 className="text-xl sm:text-2xl font-bold text-white">
-              Building responsive, API-driven web applications and admin panels with clean UI, reusable components, and reliable backend integration.
-            </h3>
-            {aboutData.paragraphs.map((p, idx) => (
-              <p key={idx} className="text-gray-300 text-base leading-relaxed">
-                {p}
-              </p>
-            ))}
-
-            <div className="pt-2 flex flex-wrap gap-3">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#162032] text-gray-200 border border-[#81D8D0]/30">
-                <CheckCircle2 className="w-4 h-4 text-[#81D8D0]" />
-                Responsive Web Apps
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#162032] text-gray-200 border border-[#81D8D0]/30">
-                <CheckCircle2 className="w-4 h-4 text-[#81D8D0]" />
-                Admin Panels
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#162032] text-gray-200 border border-[#81D8D0]/30">
-                <CheckCircle2 className="w-4 h-4 text-[#81D8D0]" />
-                Clean UI & Reusable Components
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#162032] text-gray-200 border border-[#81D8D0]/30">
-                <CheckCircle2 className="w-4 h-4 text-[#81D8D0]" />
-                Reliable Backend Integration
-              </span>
-            </div>
-          </div>
-
-          {/* Clean Focus Cards */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-            {focusPoints.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-5 rounded-2xl bg-gradient-to-b from-[#141C2E] to-[#0D1424] border border-white/10 hover:border-[#81D8D0]/60 shadow-lg transition-all duration-200"
-              >
-                <div className="w-9 h-9 rounded-xl bg-[#1A253C] flex items-center justify-center mb-2.5">
-                  {item.icon}
+      <div className="tunis-container">
+        {/* Top Grid: Personal Infos on Left & Stat Boxes on Right */}
+        <div className="about-tunis-grid">
+          {/* Left Column: Personal Info Card */}
+          <div className="about-personal-card">
+            <div>
+              <div className="about-card-header">
+                <div className="about-title-row">
+                  <div className="about-accent-bar" />
+                  <h4 className="about-subheading">Personal Infos</h4>
                 </div>
-                <p className="text-xs text-gray-400 font-semibold">{item.label}</p>
-                <p className="text-base font-extrabold text-white mt-0.5">{item.value}</p>
-                <p className="text-xs text-gray-400 mt-0.5">{item.sub}</p>
+                <span className="about-role-pill">MERN Developer</span>
+              </div>
+
+              {/* Info Tiles Grid */}
+              <div className="about-info-grid">
+                {personalDetails.map((item, idx) => {
+                  const ItemIcon = item.icon
+                  return (
+                    <div key={idx} className="about-info-tile">
+                      <ItemIcon className="w-4 h-4 about-tile-icon" />
+                      <div className="about-tile-content">
+                        <span className="about-tile-label">{item.label}</span>
+                        <span className={`about-tile-val ${item.highlight ? 'highlight-val' : ''}`}>
+                          {item.value}
+                        </span>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Card Footer: Download CV Button */}
+            <div className="about-card-footer">
+              <button
+                onClick={onOpenResume}
+                className="btn-tunis"
+                aria-label="Download CV"
+              >
+                <span>DOWNLOAD CV</span>
+                <div className="btn-icon-circle">
+                  <Download className="w-4 h-4" />
+                </div>
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column: Tunis Stat Boxes */}
+          <div className="about-stats-grid">
+            {aboutData.stats.map((stat, idx) => (
+              <div key={idx} className="about-stat-box">
+                <div className="about-stat-number">
+                  {stat.number}
+                  <span style={{ fontSize: '1.4rem' }}>{stat.suffix}</span>
+                </div>
+                <div className="about-stat-text">
+                  <strong>{stat.label1}</strong>
+                  <span>{stat.label2}</span>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* 4 Pillars Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {aboutData.highlights.map((item, idx) => (
-            <div
-              key={idx}
-              className="p-6 rounded-2xl bg-gradient-to-b from-[#141C2E] to-[#0D1424] border border-white/10 hover:border-[#81D8D0]/60 shadow-lg hover:shadow-[0_10px_30px_rgba(129,216,208,0.12)] transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="w-12 h-12 rounded-xl bg-[#1A253C] flex items-center justify-center mb-4">
-                {iconMap[item.icon] || <ShieldCheck className="w-6 h-6 text-[#81D8D0]" />}
+        {/* Bottom Grid: Engineering Highlights & Interactive Code Terminal */}
+        <div className="about-bottom-grid">
+          {/* Left: Highlights List */}
+          <div className="about-highlights-list">
+            {aboutData.highlights.map((item, idx) => {
+              const IconComp = iconMap[item.icon] || ShieldCheck
+              return (
+                <div key={idx} className="highlight-card">
+                  <div className="highlight-icon-box">
+                    <IconComp className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h5 className="highlight-title">{item.title}</h5>
+                    <p className="highlight-desc">{item.description}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Right: Interactive Code Terminal */}
+          <div className="about-terminal-wrap">
+            <div className="terminal-card">
+              {/* Terminal Top Bar with MacOS window dots & tabs */}
+              <div className="terminal-topbar">
+                <div className="terminal-dots">
+                  <span style={{ backgroundColor: '#EF4444' }} />
+                  <span style={{ backgroundColor: '#F59E0B' }} />
+                  <span style={{ backgroundColor: '#10B981' }} />
+                </div>
+
+                <div className="terminal-tabs">
+                  {Object.keys(aboutData.terminalFiles).map((fileName) => (
+                    <button
+                      key={fileName}
+                      onClick={() => setActiveTab(fileName)}
+                      className={`terminal-tab-btn ${activeTab === fileName ? 'active' : ''}`}
+                    >
+                      <TerminalIcon className="w-3.5 h-3.5" />
+                      <span>{fileName}</span>
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={handleCopyCode}
+                  className="p-1 rounded text-gray-400 hover:text-white transition-colors"
+                  title="Copy code"
+                  aria-label="Copy code"
+                >
+                  {copied ? (
+                    <Check className="w-4 h-4 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
+                </button>
               </div>
-              <h4 className="text-lg font-bold text-white mb-2">{item.title}</h4>
-              <p className="text-sm text-gray-300 leading-relaxed">{item.description}</p>
+
+              {/* Terminal Code Content */}
+              <div className="terminal-content">
+                <pre style={{ margin: 0, whiteSpace: 'pre-wrap' }}>
+                  <code>{aboutData.terminalFiles[activeTab]}</code>
+                </pre>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

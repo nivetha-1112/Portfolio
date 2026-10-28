@@ -1,72 +1,335 @@
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap";
 @import "tailwindcss";
+@import "./App.css";
 
-@theme {
-  --color-tiffany: #81D8D0;
-  --color-tiffany-dark: #57beb4;
-  --color-tiffany-light: #162a28;
-  --color-tiffany-soft: #1d3d3a;
-  --color-dark-bg: #0B0F17;
-  --color-dark-card: #111827;
-  --color-dark-card-hover: #162032;
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+:root {
+  /* Default Color Palette: Cyber Cyan / Emerald Turquoise (NOT Sathesh's #ffb400 Yellow) */
+  --accent-color: #00F5D4;
+  --accent-color-rgb: 0, 245, 212;
+  --accent-gradient: linear-gradient(135deg, #00F5D4 0%, #06D6A0 100%);
+  --accent-soft: rgba(0, 245, 212, 0.12);
+  --accent-glow: rgba(0, 245, 212, 0.35);
+  --border-highlight: rgba(0, 245, 212, 0.45);
+  --btn-text-color: #0b0f17;
+
+  /* Dark Theme Surfaces */
+  --bg-primary: #0B0F17;
+  --bg-secondary: #101624;
+  --bg-tertiary: #162032;
+  --bg-card: #121927;
+  --bg-card-hover: #19243a;
+  --text-primary: #FFFFFF;
+  --text-secondary: #CBD5E1;
+  --text-muted: #8492A6;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(18, 25, 39, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
+  --watermark-color: rgba(255, 255, 255, 0.04);
+
+  --font-sans: "Poppins", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --max-width: 1280px;
 }
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    font-family: var(--font-sans);
-    background-color: #0B0F17;
-    color: #F3F4F6;
-  }
-
-  body {
-    background-color: #0B0F17;
-    color: #F3F4F6;
-    overflow-x: hidden;
-  }
-
-  ::selection {
-    background-color: #81D8D0;
-    color: #0B0F17;
-  }
+/* Light Theme Variables */
+[data-theme="light"] {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F1F5F9;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+  --watermark-color: rgba(0, 0, 0, 0.04);
 }
 
-/* Custom dark scrollbar with Tiffany accent */
+/* Base resets & typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 40px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  color: inherit;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B0F17;
+  background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #81D8D0;
+  background: var(--bg-tertiary);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #57beb4;
+  background: var(--accent-color);
+}
+::selection {
+  background: var(--accent-color);
+  color: #0B0F17;
 }
 
-/* Glassmorphism & utilities for dark theme */
-.tiffany-gradient {
-  background: linear-gradient(135deg, #81D8D0 0%, #57beb4 100%);
+/* ==================== Tunis Signature Diagonal Shape ==================== */
+.tunis-diagonal-bg {
+  background-color: var(--accent-color);
+  z-index: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 200%;
+  position: fixed;
+  top: -50%;
+  left: -83%;
+  transform: rotate(-15deg);
+  opacity: 0.95;
+  transition: background-color 0.4s ease;
 }
 
-.dark-glass-nav {
-  background: rgba(11, 15, 23, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+@media (max-width: 992px) {
+  .tunis-diagonal-bg {
+    display: none;
+  }
 }
 
-.dark-glass-card {
-  background: rgba(17, 24, 39, 0.85);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(129, 216, 208, 0.2);
+/* ==================== Tunis Section Title Watermark ==================== */
+.tunis-section-title-wrap {
+  text-align: center;
+  z-index: 5;
+  margin-bottom: 4rem;
+  padding: 1.5rem 0;
+  position: relative;
 }
 
-.tiffany-glow {
-  box-shadow: 0 10px 30px -10px rgba(129, 216, 208, 0.35);
+.tunis-watermark {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--watermark-color);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  font-size: clamp(3.2rem, 7.5vw, 6.5rem);
+  font-weight: 900;
+  font-family: var(--font-sans);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1;
 }
 
-.tiffany-glow-sm {
-  box-shadow: 0 4px 15px -3px rgba(129, 216, 208, 0.25);
+.tunis-title-foreground {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  z-index: 2;
+  margin: 0;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 900;
+  position: relative;
+}
+
+.tunis-title-foreground span {
+  color: var(--accent-color);
+  transition: color 0.3s ease;
+}
+
+/* ==================== Tunis Signature Button ==================== */
+.btn-tunis {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--accent-color);
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 9999px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.4rem 0.45rem 0.4rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: all 0.35s ease;
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  color: var(--text-primary) !important;
+}
+
+.btn-tunis::before {
+  content: "";
+  background-color: var(--accent-color);
+  z-index: 0;
+  width: 0%;
+  height: 100%;
+  transition: width 0.35s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btn-tunis:hover::before {
+  width: 100%;
+}
+
+.btn-tunis:hover {
+  color: #0b0f17 !important;
+  box-shadow: 0 8px 25px var(--accent-glow);
+}
+
+.btn-tunis span {
+  z-index: 1;
+  position: relative;
+}
+
+.btn-tunis .btn-icon-circle {
+  background-color: var(--accent-color);
+  color: #0b0f17;
+  z-index: 1;
+  border-radius: 50%;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  transition: all 0.35s ease;
+  display: flex;
+  position: relative;
+}
+
+.btn-tunis:hover .btn-icon-circle {
+  color: var(--accent-color);
+  background-color: #0b0f17;
+}
+
+/* Primary and Secondary button variants */
+.btn-primary {
+  background-color: var(--accent-color);
+  color: #0b0f17 !important;
+  border: 1px solid var(--accent-color);
+  border-radius: 9999px;
+  padding: 0.8rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px -4px var(--accent-glow);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -4px var(--accent-glow);
+}
+
+.btn-secondary {
+  background-color: var(--bg-card);
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  padding: 0.8rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color) !important;
+  transform: translateY(-2px);
+}
+
+/* Container & section utilities */
+.tunis-container {
+  width: 90%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.tunis-section {
+  padding: 5.5rem 0;
+  position: relative;
+}
+
+@media (max-width: 992px) {
+  .tunis-container {
+    width: 92% !important;
+    padding: 0 0.75rem !important;
+  }
+  .tunis-section {
+    padding: 4rem 0 !important;
+  }
+  main {
+    padding-bottom: 85px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tunis-container {
+    width: 100% !important;
+    padding: 0 0.85rem !important;
+  }
+  .tunis-section {
+    padding: 3rem 0 !important;
+  }
+}
+
+/* Glass & Card styles */
+.tunis-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tunis-card:hover {
+  border-color: var(--border-highlight);
+  box-shadow: 0 16px 35px -10px rgba(0, 0, 0, 0.55);
 }

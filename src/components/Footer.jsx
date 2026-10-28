@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowUp, Mail, Heart } from 'lucide-react'
+import { ArrowUp, Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './Icons'
 import { personalInfo } from '../data/portfolioData'
 
@@ -11,73 +11,96 @@ export default function Footer() {
   const navLinks = [
     { name: 'Home', href: '#hero' },
     { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
+    { name: 'Stack', href: '#skills' },
+    { name: 'Services', href: '#services' },
+    { name: 'Portfolio', href: '#projects' },
     { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Education', href: '#education' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '#contact' }
   ]
 
   return (
-    <footer className="bg-[#080B11] text-white pt-16 pb-12 border-t border-gray-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-gray-800">
-          {/* Brand & Mission */}
-          <div className="md:col-span-5 space-y-4">
+    <footer className="bg-[var(--bg-primary)] text-[var(--text-primary)] pt-16 pb-12 border-t border-[var(--border-color)] relative z-10">
+      <div className="tunis-container">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[var(--border-color)]">
+          {/* Column 1: Brand & Bio (Span 5 on large screens) */}
+          <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#81D8D0] to-[#57beb4] flex items-center justify-center font-bold text-[#0B0F17] text-lg">
+              <div className="w-11 h-11 rounded-2xl bg-[var(--accent-color)] flex items-center justify-center font-black text-[#0B0F17] text-xl shadow-lg">
                 SN
               </div>
               <div>
-                <span className="font-extrabold text-lg text-white block">
+                <span className="font-extrabold text-xl text-white block tracking-tight">
                   {personalInfo.name}
                 </span>
-                <span className="text-xs text-[#81D8D0] font-semibold">
-                  MERN Stack & Full Stack Developer
+                <span className="text-xs font-semibold text-[var(--accent-color)] tracking-wide">
+                  MERN Stack Developer
                 </span>
               </div>
             </div>
-            <p className="text-gray-400 text-sm max-w-sm leading-relaxed">
-              Engineering intuitive user interfaces and reliable server systems. Specializing in enterprise admin suites, RESTful APIs, and scalable web solutions.
+
+            <p className="text-[var(--text-secondary)] text-sm max-w-sm leading-relaxed">
+              Building responsive, API-driven web applications, admin dashboards, and scalable database architectures using React, Node.js, Express, MongoDB, and MySQL.
             </p>
-            <p className="text-xs text-gray-500">
-              Chennai, Tamil Nadu, India • Open for Opportunities
-            </p>
+
+            <div className="flex items-center gap-2 text-xs text-[var(--text-muted)] pt-1">
+              <MapPin className="w-3.5 h-3.5 text-[var(--accent-color)]" />
+              <span>{personalInfo.location}</span>
+            </div>
           </div>
 
-          {/* Quick Nav Links */}
-          <div className="md:col-span-4 space-y-3">
-            <h4 className="text-xs font-bold text-gray-300 uppercase tracking-widest">
-              Navigation
+          {/* Column 2: Navigation Links (Span 4 on large screens) */}
+          <div className="lg:col-span-4 space-y-4">
+            <h4 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest border-b border-[var(--border-color)] pb-2">
+              Quick Navigation
             </h4>
-            <div className="grid grid-cols-2 gap-2 text-sm">
+            <div className="grid grid-cols-2 gap-y-2.5 gap-x-4 text-sm">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-gray-400 hover:text-[#81D8D0] transition-colors"
+                  className="text-[var(--text-secondary)] hover:text-[var(--accent-color)] transition-colors flex items-center gap-1.5 group"
                 >
-                  {link.name}
+                  <span className="text-xs text-[var(--accent-color)] opacity-0 group-hover:opacity-100 transition-opacity">
+                    →
+                  </span>
+                  <span>{link.name}</span>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Socials & Connect */}
-          <div className="md:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold text-gray-300 uppercase tracking-widest">
-              Connect Directly
+          {/* Column 3: Contact & Socials (Span 3 on large screens) */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest border-b border-[var(--border-color)] pb-2">
+              Connect With Me
             </h4>
-            <p className="text-sm text-gray-400">
-              Have a project or opportunity? Reach out via:
-            </p>
-            <div className="flex items-center gap-3 pt-1">
+
+            <div className="space-y-2 text-xs text-[var(--text-secondary)]">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="flex items-center gap-2 hover:text-[var(--accent-color)] transition-colors"
+              >
+                <Mail className="w-4 h-4 text-[var(--accent-color)] flex-shrink-0" />
+                <span className="truncate">{personalInfo.email}</span>
+              </a>
+              <a
+                href={`tel:${personalInfo.phone.replace(/\s+/g, '')}`}
+                className="flex items-center gap-2 hover:text-[var(--accent-color)] transition-colors"
+              >
+                <Phone className="w-4 h-4 text-[var(--accent-color)] flex-shrink-0" />
+                <span>{personalInfo.phone}</span>
+              </a>
+            </div>
+
+            <div className="flex items-center gap-3 pt-2">
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                className="w-10 h-10 rounded-xl bg-gray-800 hover:bg-[#81D8D0] text-gray-300 hover:text-[#1F2937] flex items-center justify-center transition-all duration-200"
+                className="social-icon-btn"
+                title="GitHub Profile"
               >
                 <GithubIcon className="w-5 h-5" />
               </a>
@@ -86,14 +109,16 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
-                className="w-10 h-10 rounded-xl bg-gray-800 hover:bg-[#81D8D0] text-gray-300 hover:text-[#1F2937] flex items-center justify-center transition-all duration-200"
+                className="social-icon-btn"
+                title="LinkedIn Profile"
               >
                 <LinkedinIcon className="w-5 h-5" />
               </a>
               <a
                 href={`mailto:${personalInfo.email}`}
-                aria-label="Send Email"
-                className="w-10 h-10 rounded-xl bg-gray-800 hover:bg-[#81D8D0] text-gray-300 hover:text-[#1F2937] flex items-center justify-center transition-all duration-200"
+                aria-label="Send Direct Email"
+                className="social-icon-btn"
+                title="Email Me"
               >
                 <Mail className="w-5 h-5" />
               </a>
@@ -101,18 +126,19 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Credits & Back to Top */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
-          <div className="flex items-center gap-1.5 text-center sm:text-left">
-            <span>© {new Date().getFullYear()} S. Nivetha. Crafted with React, Vite & Tailwind CSS.</span>
-          </div>
+        {/* Bottom Bar: Copyright & Back to Top */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-muted)]">
+          <p className="text-center sm:text-left">
+            © {new Date().getFullYear()} <span className="text-[var(--text-primary)] font-semibold">{personalInfo.name}</span>. All rights reserved.
+          </p>
 
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-[#81D8D0] hover:text-[#1F2937] text-gray-300 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all cursor-pointer shadow-sm group"
+            aria-label="Scroll back to top"
           >
-            <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5" />
+            <span className="font-semibold text-xs tracking-wide">Back to Top</span>
+            <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>
       </div>

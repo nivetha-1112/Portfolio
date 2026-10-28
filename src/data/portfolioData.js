@@ -1,8 +1,15 @@
 export const personalInfo = {
   name: "S. Nivetha",
+  firstName: "Nivetha",
+  lastName: "S",
+  age: "21",
+  nationality: "Indian",
+  freelance: "Available",
+  languages: "English, Tamil",
   title: "MERN Stack Developer | Full Stack Developer",
   shortBio: "MERN Stack Developer with nearly one year of hands-on experience building responsive, API-driven web applications and admin panels using React.js, Node.js, Express.js, MongoDB, MySQL and Tailwind CSS.",
   location: "Chennai, Tamil Nadu, India",
+  address: "Tambaram, Chennai, Tamil Nadu, India",
   email: "nivethas1112@gmail.com",
   phone: "+91 8778461163",
   github: "https://github.com/nivetha-os",
@@ -14,12 +21,57 @@ export const personalInfo = {
 
 export const aboutData = {
   heading: "About Me",
+  watermark: "RESUME",
   subheading: "MERN Stack Developer with nearly one year of hands-on experience building responsive, API-driven web applications and admin panels.",
   paragraphs: [
     "I'm S. Nivetha, a MERN Stack Developer based in Chennai, Tamil Nadu, India. I specialize in building responsive, API-driven web applications and administrative panels using React.js, Node.js, Express.js, MongoDB, MySQL, and Tailwind CSS.",
     "I have delivered three client projects (two of them currently live in production), and I am actively developing Serviq, an end-to-end restaurant management platform where I own the admin panel UI, inventory management module, and full frontend-backend API integration.",
     "I'm a quick learner with a keen eye for clean UI, reusable components, robust database architecture, and writing maintainable code."
   ],
+  stats: [
+    { number: "01", suffix: "YR", label1: "Nearly 1 Year", label2: "Hands-on Experience" },
+    { number: "03", suffix: "+", label1: "Client Projects", label2: "Delivered & Maintained" },
+    { number: "02", suffix: "", label1: "Live In Production", label2: "Active Web Platforms" },
+    { number: "10", suffix: "+", label1: "Core Technologies", label2: "React, Node, DBs & More" }
+  ],
+  terminalFiles: {
+    "profile.js": `// S. Nivetha — MERN Stack Developer
+const developer = {
+  name: "S. Nivetha",
+  location: "Chennai, Tamil Nadu, India",
+  role: "MERN Stack Developer",
+  status: "Available for Opportunities",
+  specialties: [
+    "Enterprise Admin Panels",
+    "Full-Stack Web Applications",
+    "Inventory & Booking Modules",
+    "RESTful API Architecture"
+  ],
+  readyToBuild: true
+};
+
+console.log(\`Ready to deliver production-grade applications!\`);`,
+    "stack.json": `{
+  "frontend": ["React.js", "Tailwind CSS", "Bootstrap", "HTML5", "CSS3"],
+  "backend": ["Node.js", "Express.js", "RESTful APIs", "PHP"],
+  "databases": ["MongoDB", "MySQL", "SQL"],
+  "tools": ["Git & GitHub", "Postman", "VS Code", "Vite"]
+}`,
+    "philosophy.ts": `// Engineering Philosophy
+interface WorkEthic {
+  codeQuality: "High maintainability & reusable modularity";
+  performance: "Fast response times & clean API queries";
+  uiExcellence: "Intuitive, mobile-first responsive interfaces";
+  reliability: "Error handling, Postman testing, validation";
+}
+
+export const mission: WorkEthic = {
+  codeQuality: "High maintainability & reusable modularity",
+  performance: "Fast response times & clean API queries",
+  uiExcellence: "Intuitive, mobile-first responsive interfaces",
+  reliability: "Error handling, Postman testing, validation"
+};`
+  },
   highlights: [
     {
       title: "Admin Panels & Dashboards",
@@ -43,6 +95,61 @@ export const aboutData = {
     }
   ]
 };
+
+export const servicesData = [
+  {
+    num: "01",
+    category: "Full Stack",
+    title: "MERN Web Applications",
+    description: "End-to-end web application development using React.js frontend, Node.js & Express.js backend, and MongoDB/MySQL persistence.",
+    features: [
+      "Custom business logic & schema modeling",
+      "High-speed SPA navigation",
+      "Robust state management & async flows",
+      "End-to-end testing with Postman"
+    ],
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "MySQL"]
+  },
+  {
+    num: "02",
+    category: "Operations",
+    title: "Admin Panels & Dashboards",
+    description: "Secure, intuitive administrative portals equipped with role controls, live data dashboards, inventory tracking, and full CRUD tables.",
+    features: [
+      "Inventory & stock tracking modules",
+      "Booking & customer order management",
+      "Secure CRUD operations with validation",
+      "Data export and dynamic filtering"
+    ],
+    tech: ["React", "Express APIs", "Tailwind CSS", "SQL / NoSQL"]
+  },
+  {
+    num: "03",
+    category: "Backend & Cloud",
+    title: "RESTful API Engineering",
+    description: "Scalable REST APIs designed for high efficiency, clean routing, structured controllers, error middlewares, and third-party integrations.",
+    features: [
+      "Clean route & controller separation",
+      "JSON input validation & sanitization",
+      "Automated email & lead integrations",
+      "Postman test suites & documentation"
+    ],
+    tech: ["Node.js", "Express.js", "REST APIs", "Postman", "PHP"]
+  },
+  {
+    num: "04",
+    category: "UI / UX",
+    title: "Responsive Frontend Engineering",
+    description: "Pixel-perfect, mobile-friendly user interfaces crafted with Tailwind CSS and Bootstrap, emphasizing modular reusable components.",
+    features: [
+      "Responsive across phone, tablet, and desktop",
+      "Clean semantic HTML5 structure",
+      "Subtle micro-animations & state feedback",
+      "Cross-browser tested & fast loading"
+    ],
+    tech: ["React.js", "Tailwind CSS", "Bootstrap", "JavaScript ES6+"]
+  }
+];
 
 export const skillsData = [
   {
@@ -90,7 +197,7 @@ export const skillsData = [
 
 export const experienceData = [
   {
-    period: "April 2026 — Present",
+    period: "2026 — Present",
     role: "MERN Stack Developer",
     company: "Ocean Softwares Private Limited, Tambaram",
     location: "Chennai, Tamil Nadu, India",
@@ -117,6 +224,7 @@ export const projectsData = [
     title: "Serviq - Restaurant Management Platform",
     category: "Admin Panels",
     badge: "Active Development",
+    image: "/serviq.png",
     shortDescription: "Restaurant management platform where I own the admin panel UI, inventory management module, and complete frontend-backend API integration.",
     fullDescription: "An end-to-end restaurant management suite designed for managing restaurant operations, records, and stock. Developed with responsive layouts, reusable components, and secure CRUD operations.",
     features: [
@@ -134,6 +242,7 @@ export const projectsData = [
     title: "Private Theatre Booking Website & Admin Panel",
     category: "Full Stack",
     badge: "Live in Production",
+    image: "/tinytheatre.png",
     shortDescription: "Customer-facing website and comprehensive admin panel for a private theatre booking business, live in production.",
     fullDescription: "A production booking platform featuring customer-facing slot reservation and a dedicated admin portal to manage bookings, slots, and website content.",
     features: [
@@ -151,6 +260,7 @@ export const projectsData = [
     title: "Charity Website with Admin Panel",
     category: "Full Stack",
     badge: "Live in Production",
+    image: "/charity.png",
     shortDescription: "Public charity website live in production, featuring a separate administrative panel for managing content and donor initiatives.",
     fullDescription: "A full-featured public charity platform coupled with an administrative backend for managing content updates and dynamic community records.",
     features: [
@@ -168,6 +278,7 @@ export const projectsData = [
     title: "Meadows - Land Sale Website",
     category: "Full Stack",
     badge: "Live in Production",
+    image: "/meadows.png",
     shortDescription: "Property listing and sales website with responsive design and automated PHP email enquiry delivery.",
     fullDescription: "A commercial real-estate campaign portal featuring property listing showcases and an automated lead capture enquiry form.",
     features: [
@@ -203,6 +314,7 @@ export const certificationsData = [
   {
     name: "Full Stack Development Specialization",
     issuer: "Cadpoint",
-    skills: "React.js, Node.js, Express.js, SQL, Bootstrap, JavaScript"
+    skills: "React.js, Node.js, Express.js, SQL, Bootstrap, JavaScript",
+    period: "2025"
   }
 ];
